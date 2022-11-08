@@ -27,8 +27,8 @@ class TvSeries extends Equatable {
   final String? backdropPath;
   final String? posterPath;
   final int id;
-  final int popularity;
-  final int voteAverage;
+  final double popularity;
+  final double voteAverage;
   final int voteCount;
 
   @override
