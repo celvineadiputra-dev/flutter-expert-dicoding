@@ -12,12 +12,39 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   late TvSeriesLocalDataSource localDataSource;
   late TvSeriesRemoteDataSource remoteDataSource;
 
-  TvSeriesRepositoryImpl({required this.remoteDataSource, required this.localDataSource});
+  TvSeriesRepositoryImpl(
+      {required this.remoteDataSource, required this.localDataSource});
 
   @override
   Future<Either<Failure, List<TvSeries>>> getNowPlayingTvSeries() async {
     try {
       final result = await remoteDataSource.getNowPlayingTvSeries();
+
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure(''));
+    } on SocketException {
+      return Left(ConnectionFailure('failed to connect to the network'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvSeries>>> getPopularTvSeries() async {
+    try {
+      final result = await remoteDataSource.getPopularTvSeries();
+
+      return Right(result.map((e) => e.toEntity()).toList());
+    } on ServerException {
+      return Left(ServerFailure(''));
+    } on SocketException {
+      return Left(ConnectionFailure('failed to connect to the network'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvSeries>>> getTopRatedTvSeries() async {
+    try {
+      final result = await remoteDataSource.getTopRatedTvSeries();
 
       return Right(result.map((e) => e.toEntity()).toList());
     } on ServerException {

@@ -23,9 +23,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<TvSeriesListNotifier>(context, listen: false)
-          ..fetchNowPlayingTvSeries());
+    Future.microtask(
+        () => Provider.of<TvSeriesListNotifier>(context, listen: false)
+          ..fetchNowPlayingTvSeries()
+          ..fetchPopularTvSeries()
+          ..fetchTopRatedTvSeries());
     Future.microtask(
         () => Provider.of<MovieListNotifier>(context, listen: false)
           ..fetchNowPlayingMovies()
@@ -99,6 +101,38 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   );
                 } else if (state == RequestState.Loaded) {
                   return TvSeriesList(data.nowPlayingTvSeries);
+                } else {
+                  return Text('Failed');
+                }
+              }),
+              Text(
+                'Popular Tv Series',
+                style: kHeading6.copyWith(color: Colors.white),
+              ),
+              Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
+                final state = data.popularState;
+                if (state == RequestState.Loading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state == RequestState.Loaded) {
+                  return TvSeriesList(data.popularTvSeries);
+                } else {
+                  return Text('Failed');
+                }
+              }),
+              Text(
+                'Top Rated Tv Series',
+                style: kHeading6.copyWith(color: Colors.white),
+              ),
+              Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
+                final state = data.topRatedState;
+                if (state == RequestState.Loading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state == RequestState.Loaded) {
+                  return TvSeriesList(data.topRatedTvSeries);
                 } else {
                   return Text('Failed');
                 }
