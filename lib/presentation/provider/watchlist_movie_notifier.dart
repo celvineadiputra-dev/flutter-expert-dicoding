@@ -31,6 +31,7 @@ class WatchlistMovieNotifier extends ChangeNotifier {
       (moviesData) {
         _watchlistState = RequestState.Loaded;
         _watchlistMovies = moviesData;
+        print(moviesData);
         notifyListeners();
       },
     );

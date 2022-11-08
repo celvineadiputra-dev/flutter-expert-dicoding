@@ -43,8 +43,8 @@ class TvSeriesModel extends Equatable {
       backdropPath: json['backdrop_path'],
       posterPath: json['poster_path'],
       id: json['id'],
+      voteAverage: json['vote_average'].toDouble(),
       popularity: json['popularity'],
-      voteAverage: json['vote_average'],
       voteCount: json['vote_count']);
 
   Map<String, dynamic> toJson() => {
