@@ -3,15 +3,18 @@ import 'package:ditonton/domain/entities/TvSeriesDetail.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ditonton/domain/usecases/save_tv_series_watchlist.dart';
+import 'package:flutter/material.dart';
 
 class TvSeriesDetailNotifier extends ChangeNotifier {
   final GetTvSeriesDetail getTvSeriesDetail;
+  final SaveTvSeriesWatchList saveTvSeriesWatchList;
   final GetTvSeriesRecommendation getTvSeriesRecommendation;
 
   TvSeriesDetailNotifier(
       {required this.getTvSeriesDetail,
-      required this.getTvSeriesRecommendation});
+      required this.getTvSeriesRecommendation,
+      required this.saveTvSeriesWatchList});
 
   late TvSeriesDetail _tvSeriesDetail;
   late List<TvSeries> _tvSeriesRecommendation;
@@ -30,6 +33,10 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
   String _message = '';
 
   String get message => _message;
+
+  String _watchlistMessage = '';
+
+  String get watchlistMessage => _watchlistMessage;
 
   Future<void> fetchTvSeriesDetail(int id) async {
     _tvSeriesState = RequestState.Loading;
@@ -58,4 +65,26 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
       _tvSeriesState = RequestState.Loaded;
     });
   }
+
+
+  Future<void> addWatchList(TvSeriesDetail tvSeriesDetail) async {
+    final result = await saveTvSeriesWatchList.execute(tvSeriesDetail);
+
+    await result.fold(
+          (failure) async {
+        _watchlistMessage = failure.message;
+      },
+          (successMessage) async {
+        _watchlistMessage = successMessage;
+      },
+    );
+
+    // await loadWatchlistStatus(tvSeriesDetail.id);
+  }
+
+  // Future<void> loadWatchlistStatus(int id) async {
+  //   final result = await getWatchListStatus.execute(id);
+  //   _isAddedtoWatchlist = result;
+  //   notifyListeners();
+  // }
 }

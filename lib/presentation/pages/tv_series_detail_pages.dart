@@ -101,10 +101,10 @@ class DetailContent extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () async {
                                 // if (!isAddedWatchlist) {
-                                //   await Provider.of<MovieDetailNotifier>(
-                                //           context,
-                                //           listen: false)
-                                //       .addWatchlist(movie);
+                                  await Provider.of<TvSeriesDetailNotifier>(
+                                          context,
+                                          listen: false)
+                                      .addWatchList(data);
                                 // } else {
                                 //   await Provider.of<MovieDetailNotifier>(
                                 //           context,

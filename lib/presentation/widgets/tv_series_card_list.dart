@@ -35,14 +35,14 @@ class TvSeriesCardList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.name,
+                      data.name ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
                     SizedBox(height: 16),
                     Text(
-                      data.overview,
+                      data.overview ?? "-",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     )

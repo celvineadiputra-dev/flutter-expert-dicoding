@@ -1,3 +1,4 @@
+import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/datasources/db/database_helper.dart';
 import 'package:ditonton/data/models/tv_series_table.dart';
 
@@ -29,9 +30,13 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
   }
 
   @override
-  Future<String> insertWatchList(TvSeriesTable tvSeriesTable) {
-    // TODO: implement insertWatchList
-    throw UnimplementedError();
+  Future<String> insertWatchList(TvSeriesTable tvSeriesTable) async {
+    try {
+      await databaseHelper.insertTvSeriesWatchList(tvSeriesTable);
+      return 'Success added to watchlist';
+    } catch (e) {
+      throw DatabaseException(e.toString());
+    }
   }
 
   @override

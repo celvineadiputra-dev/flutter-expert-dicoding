@@ -13,4 +13,6 @@ abstract class TvSeriesRepository {
   Future<Either<Failure, TvSeriesDetail>> getDetailTvSeries(int id);
 
   Future<Either<Failure, List<TvSeries>>> getRecommendation(int id);
+
+  Future<Either<Failure, String>> saveWatchList(TvSeriesDetail tvSeriesDetail);
 }
