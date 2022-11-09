@@ -148,9 +148,6 @@ class DetailContent extends StatelessWidget {
                             Text(
                               _showGenres(data.genres),
                             ),
-                            // Text(
-                            //   _showDuration(data.runtime),
-                            // ),
                             Row(
                               children: [
                                 RatingBarIndicator(
@@ -178,6 +175,57 @@ class DetailContent extends StatelessWidget {
                               'Recommendations',
                               style: kHeading6,
                             ),
+                            Consumer<TvSeriesDetailNotifier>(
+                              builder: (context, data, child) {
+                                if(data.tvSeriesRecommendationState == RequestState.Loading) {
+                                  return Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }else if(data.tvSeriesRecommendationState == RequestState.Loaded) {
+                                  return Container(
+                                    height: 150,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        final recommendation = data.tvSeriesRecommendation[index];
+                                        return Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushReplacementNamed(
+                                                context,
+                                                TvSeriesDetailPage.ROUTE_NAME,
+                                                arguments: recommendation.id,
+                                              );
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(8),
+                                              ),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                'https://image.tmdb.org/t/p/w500${recommendation.posterPath}',
+                                                placeholder: (context, url) =>
+                                                    Center(
+                                                      child:
+                                                      CircularProgressIndicator(),
+                                                    ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                    Icon(Icons.error),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      itemCount: data.tvSeriesRecommendation.length,
+                                    ),
+                                  );
+                                } else {
+                                  return Container();
+                                }
+                              },
+                            )
                           ],
                         ),
                       ),
