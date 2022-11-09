@@ -172,22 +172,85 @@ class DetailContent extends StatelessWidget {
                             ),
                             SizedBox(height: 16),
                             Text(
+                              'Seasons',
+                              style: kHeading6,
+                            ),
+                            Container(
+                              height: 200,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  final season = data.seasons[index];
+                                  return Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            width: 100,
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(8),
+                                              ),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    'https://image.tmdb.org/t/p/w500${season.posterPath}',
+                                                placeholder: (context, url) =>
+                                                    Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.movie,
+                                                size: 15,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                "${data.numberOfEpisodes} Episodes",
+                                                style: kHeading6.copyWith(
+                                                    fontSize: 12),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ));
+                                },
+                                itemCount: data.seasons.length,
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
                             Consumer<TvSeriesDetailNotifier>(
                               builder: (context, data, child) {
-                                if(data.tvSeriesRecommendationState == RequestState.Loading) {
+                                if (data.tvSeriesRecommendationState ==
+                                    RequestState.Loading) {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
-                                }else if(data.tvSeriesRecommendationState == RequestState.Loaded) {
+                                } else if (data.tvSeriesRecommendationState ==
+                                    RequestState.Loaded) {
                                   return Container(
                                     height: 150,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
-                                        final recommendation = data.tvSeriesRecommendation[index];
+                                        final recommendation =
+                                            data.tvSeriesRecommendation[index];
                                         return Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
@@ -204,21 +267,22 @@ class DetailContent extends StatelessWidget {
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                'https://image.tmdb.org/t/p/w500${recommendation.posterPath}',
+                                                    'https://image.tmdb.org/t/p/w500${recommendation.posterPath}',
                                                 placeholder: (context, url) =>
                                                     Center(
-                                                      child:
+                                                  child:
                                                       CircularProgressIndicator(),
-                                                    ),
+                                                ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                    Icon(Icons.error),
+                                                        Icon(Icons.error),
                                               ),
                                             ),
                                           ),
                                         );
                                       },
-                                      itemCount: data.tvSeriesRecommendation.length,
+                                      itemCount:
+                                          data.tvSeriesRecommendation.length,
                                     ),
                                   );
                                 } else {
