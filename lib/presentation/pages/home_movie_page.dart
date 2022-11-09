@@ -7,6 +7,10 @@ import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
+import 'package:ditonton/presentation/pages/tv_series_detail_pages.dart';
+import 'package:ditonton/presentation/pages/tv_series_on_air_page.dart';
+import 'package:ditonton/presentation/pages/tv_series_popular_page.dart';
+import 'package:ditonton/presentation/pages/tv_series_top_rated_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/common/state_enum.dart';
@@ -89,9 +93,10 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Now Playing Tv Series',
-                style: kHeading6.copyWith(color: Colors.white),
+              _buildSubHeading(
+                title: 'Now Playing Tv Series',
+                onTap: () =>
+                    Navigator.pushNamed(context, TvSeriesOnAirPage.ROUTE_NAME),
               ),
               Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
@@ -105,9 +110,10 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   return Text('Failed');
                 }
               }),
-              Text(
-                'Popular Tv Series',
-                style: kHeading6.copyWith(color: Colors.white),
+              _buildSubHeading(
+                title: 'Popular Tv Series',
+                onTap: () =>
+                    Navigator.pushNamed(context, TvSeriesPopularPage.ROUTE_NAME),
               ),
               Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
                 final state = data.popularState;
@@ -121,9 +127,10 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   return Text('Failed');
                 }
               }),
-              Text(
-                'Top Rated Tv Series',
-                style: kHeading6.copyWith(color: Colors.white),
+              _buildSubHeading(
+                title: 'Top Rated Tv Series',
+                onTap: () =>
+                    Navigator.pushNamed(context, TvSeriesTopRatedPage.ROUTE_NAME),
               ),
               Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedState;
@@ -277,7 +284,7 @@ class TvSeriesList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MovieDetailPage.ROUTE_NAME,
+                  TvSeriesDetailPage.ROUTE_NAME,
                   arguments: tv.id,
                 );
               },
