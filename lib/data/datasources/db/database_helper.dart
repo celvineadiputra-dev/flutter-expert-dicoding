@@ -94,4 +94,24 @@ class DatabaseHelper {
 
     return await db!.insert(_tblWatchListTvSeries, tvSeries.toJson());
   }
+
+  Future<Map<String, dynamic>?> getTvSeriesById(int id) async {
+    final db = await database;
+
+    final results = await db!
+        .query(_tblWatchListTvSeries, where: 'id = ?', whereArgs: [id]);
+
+    if (results.isNotEmpty) {
+      return results.first;
+    } else {
+      return null;
+    }
+  }
+
+  Future<int> removeTvSeriesWatchList(TvSeriesTable tvSeriesTable) async {
+    final db = await database;
+
+    return await db!.delete(_tblWatchListTvSeries,
+        where: 'id = ?', whereArgs: [tvSeriesTable.id]);
+  }
 }

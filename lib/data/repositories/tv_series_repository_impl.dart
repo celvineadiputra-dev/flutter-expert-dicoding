@@ -94,4 +94,30 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       throw e;
     }
   }
+
+  @override
+  Future<Either<Failure, List<TvSeries>>> getWatchList() {
+    // TODO: implement getWatchList
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> isAddedToWatchList(int id) async {
+    final result = await localDataSource.getTvSeriesById(id);
+
+    return result != null;
+  }
+
+  @override
+  Future<Either<Failure, String>> removeWatchList(TvSeriesDetail tvSeriesDetail) async {
+    try{
+      final result = await localDataSource.removeWatchlist(TvSeriesTable.fromEntity(tvSeriesDetail));
+
+      return Right(result);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(e.message));
+    }
+  }
+
+
 }

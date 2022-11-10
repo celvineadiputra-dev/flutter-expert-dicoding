@@ -24,9 +24,13 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<TvSeriesDetailNotifier>(context, listen: false)
-            .fetchTvSeriesDetail(widget.id));
+    Future.microtask(() {
+      Provider.of<TvSeriesDetailNotifier>(context, listen: false)
+          .fetchTvSeriesDetail(widget.id);
+
+      Provider.of<TvSeriesDetailNotifier>(context, listen: false)
+          .loadWatchlistStatus(widget.id);
+    });
   }
 
   @override
@@ -40,7 +44,8 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
             );
           } else if (data.tvSeriesState == RequestState.Loaded) {
             final detail = data.tvSeriesDetail;
-            return SafeArea(child: DetailContent(detail, false));
+            return SafeArea(
+                child: DetailContent(detail, data.isAddtedToWatchList));
           } else {
             return Text(data.message);
           }
@@ -100,40 +105,18 @@ class DetailContent extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () async {
-                                // if (!isAddedWatchlist) {
+                                if (!isAddedWatchlist) {
                                   await Provider.of<TvSeriesDetailNotifier>(
                                           context,
                                           listen: false)
                                       .addWatchList(data);
-                                // } else {
-                                //   await Provider.of<MovieDetailNotifier>(
-                                //           context,
-                                //           listen: false)
-                                //       .removeFromWatchlist(movie);
-                                // }
-                                //
-                                // final message =
-                                //     Provider.of<MovieDetailNotifier>(context,
-                                //             listen: false)
-                                //         .watchlistMessage;
-                                //
-                                // if (message ==
-                                //         MovieDetailNotifier
-                                //             .watchlistAddSuccessMessage ||
-                                //     message ==
-                                //         MovieDetailNotifier
-                                //             .watchlistRemoveSuccessMessage) {
-                                //   ScaffoldMessenger.of(context).showSnackBar(
-                                //       SnackBar(content: Text(message)));
-                                // } else {
-                                //   showDialog(
-                                //       context: context,
-                                //       builder: (context) {
-                                //         return AlertDialog(
-                                //           content: Text(message),
-                                //         );
-                                //       });
-                                // }
+                                }
+                                else {
+                                  await Provider.of<TvSeriesDetailNotifier>(
+                                          context,
+                                          listen: false)
+                                      .removeWatchList(data);
+                                }
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -180,7 +163,7 @@ class DetailContent extends StatelessWidget {
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  final season = data.seasons[index];
+                                  final season = data.seasons![index];
                                   return Padding(
                                       padding: const EdgeInsets.all(4.0),
                                       child: Column(
@@ -227,7 +210,7 @@ class DetailContent extends StatelessWidget {
                                         ],
                                       ));
                                 },
-                                itemCount: data.seasons.length,
+                                itemCount: data.seasons!.length,
                               ),
                             ),
                             SizedBox(height: 16),
