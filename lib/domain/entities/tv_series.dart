@@ -24,7 +24,6 @@ class TvSeries extends Equatable {
     required this.name,
   });
 
-
   List<String>? originCountry;
   List<int>? genreIds;
   String? firstAirDate;
