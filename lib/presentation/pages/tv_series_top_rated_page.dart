@@ -32,19 +32,20 @@ class _TvSeriesTopRatedPage extends State<TvSeriesTopRatedPage> {
         padding: EdgeInsets.all(8),
         child: Consumer<TvSeriesListNotifier>(
           builder: (context, data, child) {
-            if (data.nowPlayingState == RequestState.Loading) {
+            if (data.topRatedState == RequestState.Loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.nowPlayingState == RequestState.Loaded) {
+            } else if (data.topRatedState == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = data.topRatedTvSeries[index];
                   return TvSeriesCardList(
+                    key: Key("items_list"),
                     data: tv,
                   );
                 },
-                itemCount: data.nowPlayingTvSeries.length,
+                itemCount: data.topRatedTvSeries.length,
               );
             } else {
               return Center(

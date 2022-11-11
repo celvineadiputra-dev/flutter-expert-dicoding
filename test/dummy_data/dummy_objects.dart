@@ -1,7 +1,12 @@
+import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/season_model.dart';
+import 'package:ditonton/domain/entities/TvSeriesDetail.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/season.dart';
+import 'package:ditonton/domain/entities/tv_series.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -57,3 +62,49 @@ final testMovieMap = {
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+final testTvSeries = TvSeries(
+  originCountry: ["en", "id"],
+  genreIds: [1, 2, 3],
+  firstAirDate: "12 Oktober 2025",
+  name: "test flutter",
+  originalLanguage: "en",
+  originalName: "test coverage",
+  overview: "Dicoding test",
+  backdropPath: "/url.png",
+  posterPath: "/url.png",
+  id: 1,
+  popularity: 12.9,
+  voteAverage: 10.2,
+  voteCount: 100,
+);
+
+final testTvSeriesDetail = TvSeriesDetail(
+  adult: true,
+  backdropPath: "path",
+  genres: [Genre(id: 1, name: "genre")],
+  id: 1,
+  languages: ["en"],
+  name: "test",
+  numberOfEpisodes: 70,
+  numberOfSeasons: 8,
+  originalLanguage: "en",
+  originalName: "test",
+  overview: "test",
+  popularity: 1.1,
+  posterPath: "path",
+  seasons: [
+    Season(
+        episodeCount: 1,
+        id: 1,
+        name: "test season",
+        overview: "overview",
+        posterPath: "path",
+        seasonNumber: 1)
+  ],
+  status: "ended",
+  tagline: "ok",
+  type: "test",
+  voteAverage: 8.4,
+  voteCount: 101,
+);
