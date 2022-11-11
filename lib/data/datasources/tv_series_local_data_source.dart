@@ -9,7 +9,7 @@ abstract class TvSeriesLocalDataSource {
 
   Future<TvSeriesTable?> getTvSeriesById(int id);
 
-  Future<List<TvSeriesTable>> getWatchlistTvSeries();
+  Future<List<TvSeriesTable>> getAllWatchList();
 }
 
 class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
@@ -26,12 +26,6 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
     } else {
       return null;
     }
-  }
-
-  @override
-  Future<List<TvSeriesTable>> getWatchlistTvSeries() {
-    // TODO: implement getWatchlistTvSeries
-    throw UnimplementedError();
   }
 
   @override
@@ -53,5 +47,11 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
     } catch (e) {
       throw DatabaseException(e.toString());
     }
+  }
+
+  Future<List<TvSeriesTable>> getAllWatchList() async {
+    final result = await databaseHelper.getAllTvSeriesWatchList();
+
+    return result.map((data) => TvSeriesTable.fromMap(data)).toList();
   }
 }

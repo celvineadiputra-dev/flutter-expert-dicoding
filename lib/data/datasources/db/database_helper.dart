@@ -114,4 +114,12 @@ class DatabaseHelper {
     return await db!.delete(_tblWatchListTvSeries,
         where: 'id = ?', whereArgs: [tvSeriesTable.id]);
   }
+
+  Future<List<Map<String, dynamic>>> getAllTvSeriesWatchList() async {
+    final db = await database;
+
+    final List<Map<String, dynamic>> results = await db!.query(_tblWatchListTvSeries);
+
+    return results;
+  }
 }
