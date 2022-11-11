@@ -21,4 +21,6 @@ abstract class TvSeriesRepository {
   Future<Either<Failure, String>> removeWatchList(TvSeriesDetail tvSeriesDetail);
 
   Future<Either<Failure, List<TvSeries>>> getAllWatchList();
+
+  Future<Either<Failure, List<TvSeries>>> searchTvSeries(String query);
 }
