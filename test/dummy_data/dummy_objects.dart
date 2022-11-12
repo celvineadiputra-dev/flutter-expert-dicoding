@@ -50,6 +50,13 @@ final testWatchlistMovie = Movie.watchlist(
   overview: 'overview',
 );
 
+final testWatchlistTVSeries = TvSeries.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
 final testMovieTable = MovieTable(
   id: 1,
   title: 'title',
