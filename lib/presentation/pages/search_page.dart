@@ -12,13 +12,15 @@ enum SearchType { TV, MOVIE }
 class SearchPage extends StatefulWidget {
   static const ROUTE_NAME = '/search';
 
+  late bool isSearch;
+  SearchType? typeSelected;
+  SearchPage({this.isSearch = false, this.typeSelected = SearchType.TV});
+
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  SearchType? _typeSelected = SearchType.TV;
-  bool isSearch = false;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
                 Provider.of<MovieSearchNotifier>(context, listen: false)
                     .fetchMovieSearch(query);
                 setState(() {
-                  isSearch = true;
+                  widget.isSearch = true;
                 });
               },
               decoration: InputDecoration(
@@ -55,12 +57,13 @@ class _SearchPageState extends State<SearchPage> {
                   title: Text("TV Series"),
                   leading: Radio<SearchType>(
                     value: SearchType.TV,
-                    groupValue: _typeSelected,
-                    fillColor: MaterialStateColor.resolveWith((states) => kMikadoYellow),
+                    groupValue: widget.typeSelected,
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => kMikadoYellow),
                     onChanged: (SearchType? value) {
                       setState(() {
-                        isSearch = false;
-                        _typeSelected = value;
+                        widget.isSearch = false;
+                        widget.typeSelected = value;
                       });
                     },
                   ),
@@ -69,13 +72,14 @@ class _SearchPageState extends State<SearchPage> {
                   title: Text("Movies"),
                   leading: Radio<SearchType>(
                     value: SearchType.MOVIE,
-                    groupValue: _typeSelected,
-                    fillColor: MaterialStateColor.resolveWith((states) => kMikadoYellow),
+                    groupValue: widget.typeSelected,
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => kMikadoYellow),
                     onChanged: (SearchType? value) {
                       print(value);
                       setState(() {
-                        isSearch = false;
-                        _typeSelected = value;
+                        widget.isSearch = false;
+                        widget.typeSelected = value;
                       });
                     },
                   ),
@@ -95,8 +99,8 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Widget result() {
-    if (isSearch) {
-      if (_typeSelected == SearchType.TV) {
+    if (widget.isSearch) {
+      if (widget.typeSelected == SearchType.TV) {
         return Consumer<TvSeriesSearchNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
@@ -119,12 +123,12 @@ class _SearchPageState extends State<SearchPage> {
               );
             } else {
               return Expanded(
-                child: Container(),
+                child: Container(key: Key("container-tv-series-empty"),),
               );
             }
           },
         );
-      } else if (_typeSelected == SearchType.MOVIE) {
+      } else if (widget.typeSelected == SearchType.MOVIE) {
         return Consumer<MovieSearchNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
@@ -144,13 +148,13 @@ class _SearchPageState extends State<SearchPage> {
               ));
             } else {
               return Expanded(
-                child: Container(),
+                child: Container(key: Key("container-movie-empty"),),
               );
             }
           },
         );
       }
     }
-    return Expanded(child: Container());
+    return Expanded(child: Container(key: Key("container-default"),));
   }
 }

@@ -12,6 +12,7 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: Key('container-movie'),
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {

@@ -12,6 +12,7 @@ class TvSeriesCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: Key("container-tv-series"),
       margin: EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {

@@ -1,6 +1,7 @@
 import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/data/models/season_model.dart';
+import 'package:ditonton/data/models/tv_series_table.dart';
 import 'package:ditonton/domain/entities/TvSeriesDetail.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
@@ -62,6 +63,20 @@ final testMovieMap = {
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+final testTvSeriesMap = {
+  'id': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'name': 'name',
+};
+
+final testTvSeriesTable = TvSeriesTable(
+  id: 1,
+  name: "name",
+  posterPath: "posterPath",
+  overview: "overview",
+);
 
 final testTvSeries = TvSeries(
   originCountry: ["en", "id"],
