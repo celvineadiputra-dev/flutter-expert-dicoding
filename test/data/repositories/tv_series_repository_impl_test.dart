@@ -49,7 +49,7 @@ void main() {
   final tTvSeriesModelList = <TvSeriesModel>[tTvSeriesModel];
   final tTvSeriesList = <TvSeries>[testTvSeries];
 
-  group('Now Playing Movies', () {
+  group('Now Playing Tv Series', () {
     test(
         'should return remote data when the call to remote data source is successful',
         () async {
@@ -92,7 +92,7 @@ void main() {
     });
   });
 
-  group('Popular Movies', () {
+  group('Popular Tv Series', () {
     test('should return movie list when call to data source is success',
         () async {
       when(mockTvSeriesRemoteDataSource.getPopularTvSeries())
@@ -129,7 +129,7 @@ void main() {
     });
   });
 
-  group('Top Rated Movies', () {
+  group('Top Rated Tv Series', () {
     test('should return movie list when call to data source is successful',
         () async {
       when(mockTvSeriesRemoteDataSource.getTopRatedTvSeries())
@@ -279,7 +279,7 @@ void main() {
     });
   });
 
-  group('Seach Movies', () {
+  group('Seach Tv Series', () {
     final tQuery = 'spiderman';
 
     test('should return movie list when call to data source is successful',
@@ -372,8 +372,8 @@ void main() {
     });
   });
 
-  group('get watchlist movies', () {
-    test('should return list of Movies', () async {
+  group('get watchlist Tv Series', () {
+    test('should return list of Tv Series', () async {
       when(mockTvSeriesLocalDataSource.getAllWatchList())
           .thenAnswer((_) async => [testTvSeriesTable]);
 
