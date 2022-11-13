@@ -1,12 +1,11 @@
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/TvSeriesDetail.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
-import 'package:ditonton/domain/usecases/save_tv_series_watchlist.dart';
-import 'package:ditonton/domain/usecases/remove_tv_series_watchlist.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_watch_list_status.dart';
-
+import 'package:ditonton/domain/usecases/remove_tv_series_watchlist.dart';
+import 'package:ditonton/domain/usecases/save_tv_series_watchlist.dart';
 import 'package:flutter/material.dart';
 
 class TvSeriesDetailNotifier extends ChangeNotifier {

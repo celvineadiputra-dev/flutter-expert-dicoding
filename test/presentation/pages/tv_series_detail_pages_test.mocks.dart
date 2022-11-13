@@ -8,7 +8,7 @@ import 'dart:ui' as _i12;
 
 import 'package:ditonton/common/state_enum.dart' as _i10;
 import 'package:ditonton/domain/entities/tv_series.dart' as _i9;
-import 'package:ditonton/domain/entities/TvSeriesDetail.dart' as _i7;
+import 'package:ditonton/domain/entities/tv_series_detail.dart' as _i7;
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart' as _i2;
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart'
     as _i4;

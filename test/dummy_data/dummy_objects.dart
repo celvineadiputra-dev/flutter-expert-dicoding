@@ -1,8 +1,6 @@
-import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie_table.dart';
-import 'package:ditonton/data/models/season_model.dart';
 import 'package:ditonton/data/models/tv_series_table.dart';
-import 'package:ditonton/domain/entities/TvSeriesDetail.dart';
+import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
