@@ -67,6 +67,7 @@ class DetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Stack(
+      key: Key("stack-detail"),
       children: [
         CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500${data.posterPath}',
@@ -171,6 +172,7 @@ class DetailContent extends StatelessWidget {
                                           Container(
                                             width: 100,
                                             child: ClipRRect(
+                                              key: Key("image-season"),
                                               borderRadius: BorderRadius.all(
                                                 Radius.circular(8),
                                               ),
@@ -223,6 +225,7 @@ class DetailContent extends StatelessWidget {
                                 if (data.tvSeriesRecommendationState ==
                                     RequestState.Loading) {
                                   return Center(
+                                    key: Key('circular-recommendation'),
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (data.tvSeriesRecommendationState ==
@@ -245,6 +248,7 @@ class DetailContent extends StatelessWidget {
                                               );
                                             },
                                             child: ClipRRect(
+                                              key: Key('image-recommendation'),
                                               borderRadius: BorderRadius.all(
                                                 Radius.circular(8),
                                               ),
@@ -269,7 +273,7 @@ class DetailContent extends StatelessWidget {
                                     ),
                                   );
                                 } else {
-                                  return Container();
+                                  return Container(key: Key("empty-recommendation"),);
                                 }
                               },
                             )

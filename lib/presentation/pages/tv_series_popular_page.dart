@@ -32,11 +32,11 @@ class _TvSeriesPopularPage extends State<TvSeriesPopularPage> {
         padding: EdgeInsets.all(8),
         child: Consumer<TvSeriesListNotifier>(
           builder: (context, data, child) {
-            if (data.nowPlayingState == RequestState.Loading) {
+            if (data.popularState == RequestState.Loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.nowPlayingState == RequestState.Loaded) {
+            } else if (data.popularState == RequestState.Loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = data.popularTvSeries[index];
@@ -44,7 +44,7 @@ class _TvSeriesPopularPage extends State<TvSeriesPopularPage> {
                     data: tv,
                   );
                 },
-                itemCount: data.nowPlayingTvSeries.length,
+                itemCount: data.popularTvSeries.length,
               );
             } else {
               return Center(
