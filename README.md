@@ -5,3 +5,8 @@
 # Example Build Status
 
 <img src="screenshot/build.png"/>
+
+# Firebase
+
+<img src="screenshot/analytics.png"/>
+<img src="screenshot/FirebaseCrashlytics.png"/>
