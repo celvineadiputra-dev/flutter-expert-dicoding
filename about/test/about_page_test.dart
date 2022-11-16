@@ -1,4 +1,4 @@
-import 'package:ditonton/presentation/pages/about_page.dart';
+import 'package:about/about.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,7 +12,7 @@ void main() {
   testWidgets("Contain image", (WidgetTester test) async {
     final image = find.byType(Image);
 
-    await test.pumpWidget(_makeTestableWidget(AboutPage()));
+    await test.pumpWidget(_makeTestableWidget(const AboutPage()));
 
     expect(image, findsOneWidget);
   });
