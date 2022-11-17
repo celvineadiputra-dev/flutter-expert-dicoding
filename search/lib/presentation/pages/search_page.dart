@@ -1,10 +1,14 @@
 import 'package:core/core.dart';
-import 'package:core/presentation/provider/movie_search_notifier.dart';
-import 'package:core/presentation/provider/tv_series_search_notifier.dart';
+
+// import 'package:bl/presentation/provider/movie_search_notifier.dart';
+// import 'package:bl/presentation/provider/tv_series_search_notifier.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:core/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:search/presentation/bloc/search_movie_bloc.dart';
+import 'package:search/presentation/bloc/search_movie_event.dart';
+import 'package:search/presentation/bloc/search_movie_state.dart';
 
 enum SearchType { TV, MOVIE }
 
@@ -34,10 +38,11 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<TvSeriesSearchNotifier>(context, listen: false)
-                    .fetchTvSeriesSearch(query);
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
+                context.read<SearchMovieBloc>().add(QuerySearchMovie(query));
+                // Provider.of<TvSeriesSearchNotifier>(context, listen: false)
+                //     .fetchTvSeriesSearch(query);
+                // Provider.of<MovieSearchNotifier>(context, listen: false)
+                //     .fetchMovieSearch(query);
                 setState(() {
                   widget.isSearch = true;
                 });
@@ -100,43 +105,53 @@ class _SearchPageState extends State<SearchPage> {
   Widget result() {
     if (widget.isSearch) {
       if (widget.typeSelected == SearchType.TV) {
-        return Consumer<TvSeriesSearchNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (data.state == RequestState.Loaded) {
-              final result = data.searchResult;
-              return Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.all(8),
-                  itemBuilder: (context, index) {
-                    final tv = data.searchResult[index];
-                    return TvSeriesCardList(
-                      data: tv,
-                    );
-                  },
-                  itemCount: result.length,
-                ),
-              );
-            } else {
-              return Expanded(
-                child: Container(
-                  key: const Key("container-tv-series-empty"),
-                ),
-              );
-            }
-          },
+        return Center(
+          child: Text("WAITING"),
         );
+        // return Consumer<TvSeriesSearchNotifier>(
+        //   builder: (context, data, child) {
+        //     if (data.state == RequestState.Loading) {
+        //       return const Center(
+        //         child: CircularProgressIndicator(),
+        //       );
+        //     } else if (data.state == RequestState.Loaded) {
+        //       final result = data.searchResult;
+        //       return Expanded(
+        //         child: ListView.builder(
+        //           padding: const EdgeInsets.all(8),
+        //           itemBuilder: (context, index) {
+        //             final tv = data.searchResult[index];
+        //             return TvSeriesCardList(
+        //               data: tv,
+        //             );
+        //           },
+        //           itemCount: result.length,
+        //         ),
+        //       );
+        //     } else {
+        //       return Expanded(
+        //         child: Container(
+        //           key: const Key("container-tv-series-empty"),
+        //         ),
+        //       );
+        //     }
+        //   },
+        // );
       } else if (widget.typeSelected == SearchType.MOVIE) {
-        return Consumer<MovieSearchNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (data.state == RequestState.Loaded) {
+        return BlocBuilder<SearchMovieBloc, SearchMovieState>(
+          builder: (context, data) {
+            if (data is SearchMovieLoading) {
+              if (data.movieState == RequestState.Loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (data.movieState == RequestState.Empty) {
+                return const Center(
+                  key: Key("container-movie-empty"),
+                  child: Text("Movie Not Found"),
+                );
+              }
+            } else if (data is SearchMovieHasData) {
               final result = data.searchResult;
               return Expanded(
                   child: ListView.builder(
@@ -147,13 +162,12 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 itemCount: result.length,
               ));
-            } else {
-              return Expanded(
-                child: Container(
-                  key: const Key("container-movie-empty"),
-                ),
+            } else if (data is SearchMovieError) {
+              return const Center(
+                child: Text("Failed search movie"),
               );
             }
+            return Expanded(child: Container());
           },
         );
       }

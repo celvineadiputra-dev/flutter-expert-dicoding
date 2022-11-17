@@ -33,6 +33,7 @@ dependencies:
     path: core
   about:
     path: about
+  flutter_bloc: ^8.1.1
 
 dev_dependencies:
   mockito: ^5.0.8

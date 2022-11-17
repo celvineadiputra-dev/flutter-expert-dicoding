@@ -25,8 +25,9 @@ import 'package:core/domain/usecases/remove_tv_series_watchlist.dart';
 import 'package:core/domain/usecases/remove_watchlist.dart';
 import 'package:core/domain/usecases/save_tv_series_watchlist.dart';
 import 'package:core/domain/usecases/save_watchlist.dart';
-import 'package:core/domain/usecases/search_movies.dart';
-import 'package:core/domain/usecases/search_tv_series.dart';
+import 'package:search/domain/usecases/search_movies.dart';
+// import 'package:core/domain/usecases/search_tv_series.dart';
+import 'package:search/presentation/bloc/search_movie_bloc.dart';
 import 'package:core/presentation/provider/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie_list_notifier.dart';
 import 'package:core/presentation/provider/movie_search_notifier.dart';
@@ -62,9 +63,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
+    () => SearchMovieBloc(locator(),),
   );
   locator.registerFactory(
     () => PopularMoviesNotifier(
@@ -92,9 +91,9 @@ void init() {
   locator.registerFactory(
     () => WatchlistTvSeriesNotifier(getWatchlistTvSeries: locator()),
   );
-  locator.registerFactory(
-    () => TvSeriesSearchNotifier(searchTvSeries: locator()),
-  );
+  // locator.registerFactory(
+  //   () => TvSeriesSearchNotifier(searchTvSeries: locator()),
+  // );
 
   // tv Series
   locator.registerFactory(
@@ -127,7 +126,7 @@ void init() {
   locator.registerLazySingleton(() => GetTvSeriesWatchListStatus(locator()));
   locator.registerLazySingleton(() => RemoveTvSeriesWatchList(locator()));
   locator.registerLazySingleton(() => GetWatchlistTvSeries(locator()));
-  locator.registerLazySingleton(() => SearchTvSeries(locator()));
+  // locator.registerLazySingleton(() => SearchTvSeries(locator()));
 
   // repository
   locator.registerLazySingleton<MovieRepository>(
