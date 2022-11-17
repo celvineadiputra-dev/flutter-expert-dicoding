@@ -25,6 +25,7 @@ import 'package:core/presentation/provider/tv_series_search_notifier.dart';
 import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/watchlist_tv_series_notifier.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
+import 'package:search/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:core/utils/http_custom.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
         // ),
         BlocProvider(
           create: (_) => di.locator<SearchMovieBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<SearchTvSeriesBloc>(),
         ),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<TopRatedMoviesNotifier>(),

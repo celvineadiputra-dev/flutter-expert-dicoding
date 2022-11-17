@@ -1,11 +1,8 @@
 import 'package:core/domain/entities/movie.dart';
 import 'package:core/utils/state_enum.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:equatable/equatable.dart';
 
-// part of 'search_movie_bloc.dart';
-
-abstract class SearchMovieState {
+abstract class SearchMovieState extends Equatable{
   const SearchMovieState();
 
   List<Object?> get props => [];

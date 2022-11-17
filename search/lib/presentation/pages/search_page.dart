@@ -9,6 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
 import 'package:search/presentation/bloc/search_movie_event.dart';
 import 'package:search/presentation/bloc/search_movie_state.dart';
+import 'package:search/presentation/bloc/search_tv_series_bloc.dart';
+import 'package:search/presentation/bloc/search_tv_series_event.dart';
+import 'package:search/presentation/bloc/search_tv_series_state.dart';
 
 enum SearchType { TV, MOVIE }
 
@@ -38,11 +41,13 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             TextField(
               onSubmitted: (query) {
-                context.read<SearchMovieBloc>().add(QuerySearchMovie(query));
-                // Provider.of<TvSeriesSearchNotifier>(context, listen: false)
-                //     .fetchTvSeriesSearch(query);
-                // Provider.of<MovieSearchNotifier>(context, listen: false)
-                //     .fetchMovieSearch(query);
+                if (widget.typeSelected == SearchType.TV) {
+                  context
+                      .read<SearchTvSeriesBloc>()
+                      .add(QuerySearchTvSeries(query));
+                } else {
+                  context.read<SearchMovieBloc>().add(QuerySearchMovie(query));
+                }
                 setState(() {
                   widget.isSearch = true;
                 });
@@ -105,38 +110,42 @@ class _SearchPageState extends State<SearchPage> {
   Widget result() {
     if (widget.isSearch) {
       if (widget.typeSelected == SearchType.TV) {
-        return Center(
-          child: Text("WAITING"),
+        return BlocBuilder<SearchTvSeriesBloc, SearchTvSeriesState>(
+          builder: (context, data) {
+            if (data is SearchTvSeriesLoading) {
+              if (data.tvSeriesState == RequestState.Loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (data.tvSeriesState == RequestState.Empty) {
+                return const Center(
+                  key: Key("container-tv-series-empty"),
+                  child: Text("TV Series Not Found"),
+                );
+              }
+            } else if (data is SearchTvSeriesHasData) {
+              final result = data.searchResult;
+              return Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(8),
+                  itemBuilder: (context, index) {
+                    final tv = data.searchResult[index];
+                    return TvSeriesCardList(
+                      data: tv,
+                    );
+                  },
+                  itemCount: result.length,
+                ),
+              );
+            } else if (data is SearchTvSeriesError) {
+              return const Center(
+                child: Text("Failed search movie"),
+              );
+            }
+
+            return Expanded(child: Container());
+          },
         );
-        // return Consumer<TvSeriesSearchNotifier>(
-        //   builder: (context, data, child) {
-        //     if (data.state == RequestState.Loading) {
-        //       return const Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     } else if (data.state == RequestState.Loaded) {
-        //       final result = data.searchResult;
-        //       return Expanded(
-        //         child: ListView.builder(
-        //           padding: const EdgeInsets.all(8),
-        //           itemBuilder: (context, index) {
-        //             final tv = data.searchResult[index];
-        //             return TvSeriesCardList(
-        //               data: tv,
-        //             );
-        //           },
-        //           itemCount: result.length,
-        //         ),
-        //       );
-        //     } else {
-        //       return Expanded(
-        //         child: Container(
-        //           key: const Key("container-tv-series-empty"),
-        //         ),
-        //       );
-        //     }
-        //   },
-        // );
       } else if (widget.typeSelected == SearchType.MOVIE) {
         return BlocBuilder<SearchMovieBloc, SearchMovieState>(
           builder: (context, data) {
