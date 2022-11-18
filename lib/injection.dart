@@ -1,4 +1,5 @@
 import 'package:core/data/datasources/db/database_helper.dart';
+import 'package:movie/data/datasources/db/database_movie_helper.dart';
 import 'package:movie/data/datasources/movie_local_data_source.dart';
 import 'package:movie/data/datasources/movie_remote_data_source.dart';
 import 'package:core/data/datasources/tv_series_local_data_source.dart';
@@ -19,17 +20,18 @@ import 'package:core/domain/usecases/get_tv_series_detail.dart';
 import 'package:core/domain/usecases/get_tv_series_recommendations.dart';
 import 'package:core/domain/usecases/get_tv_series_watch_list_status.dart';
 import 'package:movie/domain/usecases/get_watchlist_movies.dart';
-import 'package:core/domain/usecases/get_watchlist_status.dart';
 import 'package:core/domain/usecases/get_watchlist_tv_series.dart';
 import 'package:core/domain/usecases/remove_tv_series_watchlist.dart';
-import 'package:core/domain/usecases/remove_watchlist.dart';
 import 'package:core/domain/usecases/save_tv_series_watchlist.dart';
-import 'package:core/domain/usecases/save_watchlist.dart';
+import 'package:movie/domain/usecases/get_watchlist_status.dart';
+import 'package:movie/domain/usecases/remove_watchlist.dart';
+import 'package:movie/domain/usecases/save_watchlist.dart';
 import 'package:movie/presentation/bloc/movie_detail/detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/recommendation/movie_recommendation_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_bloc.dart';
+import 'package:movie/presentation/bloc/watch_list/process/watchlist_process_bloc.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/domain/usecases/search_tv_series.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
@@ -69,6 +71,8 @@ void init() {
   locator.registerFactory(
     () => MovieRecommendationBloc(locator()),
   );
+  locator.registerFactory(
+      () => WatchlistProcessBloc(locator(), locator(), locator()));
   // locator.registerFactory(
   //   () => MovieDetailNotifier(
   //     getMovieDetail: locator(),
@@ -172,6 +176,7 @@ void init() {
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
+  locator.registerLazySingleton<DatabaseMovieHelper>(() => DatabaseMovieHelper());
 
   // external
   locator.registerLazySingleton(() => HttpCustom.client);
