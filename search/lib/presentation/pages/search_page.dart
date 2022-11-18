@@ -1,8 +1,5 @@
 import 'package:core/core.dart';
-
-// import 'package:bl/presentation/provider/movie_search_notifier.dart';
-// import 'package:bl/presentation/provider/tv_series_search_notifier.dart';
-import 'package:core/presentation/widgets/movie_card_list.dart';
+import 'package:movie/presentation/widgets/movie_card_list.dart';
 import 'package:core/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

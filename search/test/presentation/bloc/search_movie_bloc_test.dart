@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:core/domain/entities/movie.dart';
+import 'package:movie/domain/entities/movie.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -9,7 +9,6 @@ import 'package:search/presentation/bloc/search_movie_event.dart';
 import 'package:search/presentation/bloc/search_movie_state.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import '../../helpers/mock_search_movie.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {

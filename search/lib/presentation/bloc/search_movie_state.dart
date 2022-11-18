@@ -1,4 +1,4 @@
-import 'package:core/domain/entities/movie.dart';
+import 'package:movie/domain/entities/movie.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:equatable/equatable.dart';
 
