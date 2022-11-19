@@ -1,56 +1,57 @@
-// import 'package:core/core.dart';
-// // import 'package:core/presentation/provider/top_rated_movies_notifier.dart';
-// import 'package:movie/presentation/widgets/movie_card_list.dart';
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-//
-// class TopRatedMoviesPage extends StatefulWidget {
-//   static const ROUTE_NAME = '/top-rated-movie';
-//
-//   @override
-//   _TopRatedMoviesPageState createState() => _TopRatedMoviesPageState();
-// }
-//
-// class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     Future.microtask(() =>
-//         Provider.of<TopRatedMoviesNotifier>(context, listen: false)
-//             .fetchTopRatedMovies());
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Top Rated Movies'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(8.0),
-//         child: Consumer<TopRatedMoviesNotifier>(
-//           builder: (context, data, child) {
-//             if (data.state == RequestState.Loading) {
-//               return Center(
-//                 child: CircularProgressIndicator(),
-//               );
-//             } else if (data.state == RequestState.Loaded) {
-//               return ListView.builder(
-//                 itemBuilder: (context, index) {
-//                   final movie = data.movies[index];
-//                   return MovieCard(movie);
-//                 },
-//                 itemCount: data.movies.length,
-//               );
-//             } else {
-//               return Center(
-//                 key: Key('error_message'),
-//                 child: Text(data.message),
-//               );
-//             }
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_bloc.dart';
+import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_event.dart';
+import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_state.dart';
+import 'package:movie/presentation/widgets/movie_card_list.dart';
+import 'package:flutter/material.dart';
+
+class TopRatedMoviesPage extends StatefulWidget {
+  @override
+  _TopRatedMoviesPageState createState() => _TopRatedMoviesPageState();
+}
+
+class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<MovieListTopRatedBloc>().add(FetchTopRatedMovies());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Top Rated Movies'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: BlocBuilder<MovieListTopRatedBloc, MovieListTopRatedState>(
+          builder: (context, data) {
+            if (data is MovieListTopRatedLoading) {
+              if (data.state == RequestState.Loading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return const Center(
+                  child: Text("Empty"),
+                );
+              }
+            } else if (data is MovieListTopRatedHasData) {
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  final movie = data.result[index];
+                  return MovieCard(movie);
+                },
+                itemCount: data.result.length,
+              );
+            } else {
+              return const Text('Failed');
+            }
+          },
+        ),
+      ),
+    );
+  }
+}

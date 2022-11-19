@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, movieRoute);
+                Navigator.pushNamed(context, watchlistMovieRoute);
               },
             ),
             ListTile(

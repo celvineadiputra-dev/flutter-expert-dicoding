@@ -57,7 +57,11 @@ class _HomeMovieListState extends State<HomeMovieList> {
             }
             return Expanded(child: Container());
           }),
-          _buildSubHeading(title: "Popular Movies", onTap: () {}),
+          _buildSubHeading(
+              title: "Popular Movies",
+              onTap: () {
+                Navigator.pushNamed(context, popularMovieRoute);
+              }),
           BlocBuilder<MovieListPopularBloc, MovieListPopularState>(
               builder: (context, data) {
             if (data is MovieListPopularLoading) {
@@ -77,7 +81,11 @@ class _HomeMovieListState extends State<HomeMovieList> {
             }
             return Expanded(child: Container());
           }),
-          _buildSubHeading(title: "Top Rated Movies", onTap: () {}),
+          _buildSubHeading(
+              title: "Top Rated Movies",
+              onTap: () {
+                Navigator.pushNamed(context, topRatedMovieRoute);
+              }),
           BlocBuilder<MovieListTopRatedBloc, MovieListTopRatedState>(
               builder: (context, data) {
             if (data is MovieListTopRatedLoading) {

@@ -1,0 +1,28 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "poster_path": "/url.png",
+      "popularity": 12.9,
+      "id": 1,
+      "backdrop_path": "/url.png",
+      "vote_average": 10.2,
+      "overview": "Dicoding test",
+      "first_air_date": "2010-06-09",
+      "origin_country": [
+        "en", "id"
+      ],
+      "genre_ids": [
+        1,
+        2,
+        3
+      ],
+      "original_language": "en",
+      "vote_count": 100,
+      "name": "test flutter",
+      "original_name": "test coverage"
+    }
+  ],
+  "total_results": 192,
+  "total_pages": 10
+}

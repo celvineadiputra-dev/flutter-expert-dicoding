@@ -1,17 +1,13 @@
 import 'package:core/core.dart';
 import 'package:movie/domain/entities/movie.dart';
 import 'package:core/domain/entities/tv_series.dart';
-import 'package:movie/presentation/pages/home_movie_page.dart';
-import 'package:movie/presentation/provider/movie_list_notifier.dart';
 import 'package:core/presentation/provider/tv_series_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'home_movie_page_test.mocks.dart';
 
 @GenerateMocks([TvSeriesListNotifier, MovieListNotifier])
 void main() {

@@ -8,12 +8,11 @@ import 'package:movie/presentation/bloc/movie_detail/recommendation/movie_recomm
 import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_bloc.dart';
+import 'package:movie/presentation/bloc/watch_list/list/watch_list_bloc.dart';
 import 'package:movie/presentation/bloc/watch_list/process/watchlist_process_bloc.dart';
-import 'package:movie/presentation/pages/home_movie_page.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/presentation/pages/home_movie_page.dart';
 import 'package:search/presentation/pages/search_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:core/presentation/pages/tv_series_detail_pages.dart';
@@ -80,6 +79,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<WatchlistProcessBloc>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<WatchListBloc>(),
+        ),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<TopRatedMoviesNotifier>(),
         // ),
@@ -116,10 +118,10 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case movieRoute:
               return MaterialPageRoute(builder: (_) => HomePage());
-            // case PopularMoviesPage.ROUTE_NAME:
-            //   return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-            // case TopRatedMoviesPage.ROUTE_NAME:
-            //   return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
+            case popularMovieRoute:
+              return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
+            case topRatedMovieRoute:
+              return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
             case movieDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -132,19 +134,19 @@ class MyApp extends StatelessWidget {
             //   return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             case aboutRoute:
               return MaterialPageRoute(builder: (_) => AboutPage());
-            case TvSeriesOnAirPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => TvSeriesOnAirPage());
-            case TvSeriesPopularPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => TvSeriesPopularPage());
-            case TvSeriesTopRatedPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => TvSeriesTopRatedPage());
-            case TvSeriesDetailPage.ROUTE_NAME:
-              final id = settings.arguments as int;
-              return MaterialPageRoute(
-                  builder: (_) => TvSeriesDetailPage(id: id),
-                  settings: settings);
-            case WatchListTvSeries.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchListTvSeries());
+            // case TvSeriesOnAirPage.ROUTE_NAME:
+            //   return MaterialPageRoute(builder: (_) => TvSeriesOnAirPage());
+            // case TvSeriesPopularPage.ROUTE_NAME:
+            //   return MaterialPageRoute(builder: (_) => TvSeriesPopularPage());
+            // case TvSeriesTopRatedPage.ROUTE_NAME:
+            //   return MaterialPageRoute(builder: (_) => TvSeriesTopRatedPage());
+            // case TvSeriesDetailPage.ROUTE_NAME:
+              // final id = settings.arguments as int;
+            // return MaterialPageRoute(
+            //     builder: (_) => TvSeriesDetailPage(id: id),
+            //     settings: settings);
+            case watchlistMovieRoute:
+              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             default:
               return MaterialPageRoute(
                 builder: (_) {

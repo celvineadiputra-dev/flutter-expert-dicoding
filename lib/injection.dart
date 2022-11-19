@@ -31,6 +31,7 @@ import 'package:movie/presentation/bloc/movie_detail/recommendation/movie_recomm
 import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_bloc.dart';
+import 'package:movie/presentation/bloc/watch_list/list/watch_list_bloc.dart';
 import 'package:movie/presentation/bloc/watch_list/process/watchlist_process_bloc.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/domain/usecases/search_tv_series.dart';
@@ -73,6 +74,9 @@ void init() {
   );
   locator.registerFactory(
       () => WatchlistProcessBloc(locator(), locator(), locator()));
+  locator.registerFactory(
+    () => WatchListBloc(locator()),
+  );
   // locator.registerFactory(
   //   () => MovieDetailNotifier(
   //     getMovieDetail: locator(),
@@ -176,7 +180,8 @@ void init() {
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
-  locator.registerLazySingleton<DatabaseMovieHelper>(() => DatabaseMovieHelper());
+  locator
+      .registerLazySingleton<DatabaseMovieHelper>(() => DatabaseMovieHelper());
 
   // external
   locator.registerLazySingleton(() => HttpCustom.client);
