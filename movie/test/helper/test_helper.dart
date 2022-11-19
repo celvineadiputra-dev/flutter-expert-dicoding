@@ -8,6 +8,8 @@ import 'package:movie/domain/usecases/get_movie_recommendations.dart';
 import 'package:movie/domain/usecases/get_now_playing_movies.dart';
 import 'package:movie/domain/usecases/get_popular_movies.dart';
 import 'package:movie/domain/usecases/get_top_rated_movies.dart';
+import 'package:movie/domain/usecases/get_watchlist_movies.dart';
+import 'package:movie/domain/usecases/get_watchlist_status.dart';
 
 @GenerateMocks([
   MovieRepository,
@@ -17,7 +19,9 @@ import 'package:movie/domain/usecases/get_top_rated_movies.dart';
   GetPopularMovies,
   GetTopRatedMovies,
   GetMovieDetail,
-  GetMovieRecommendations
+  GetMovieRecommendations,
+  GetWatchlistMovies,
+  GetWatchListStatus
 ], customMocks: [
   MockSpec<http.Client>(as: #MockHttpClient)
 ])
