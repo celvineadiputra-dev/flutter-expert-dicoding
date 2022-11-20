@@ -22,12 +22,17 @@ import 'package:core/utils/http_custom.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tvseries/presentation/bloc/tv_series_detail/detail/tv_series_detail_bloc.dart';
+import 'package:tvseries/presentation/bloc/tv_series_detail/recommendation/tv_series_recommendation_bloc.dart';
 import 'package:tvseries/presentation/bloc/tv_series_list/now_playing/tv_series_now_playing_bloc.dart';
 import 'package:tvseries/presentation/bloc/tv_series_list/popular/tv_series_popular_bloc.dart';
 import 'package:tvseries/presentation/bloc/tv_series_list/top_rated/tv_series_top_rated_bloc.dart';
+import 'package:tvseries/presentation/bloc/watch_list/list/watch_list_bloc.dart';
+import 'package:tvseries/presentation/bloc/watch_list/process/watchlist_process_bloc.dart';
 import 'package:tvseries/presentation/pages/tv_series_on_air_page.dart';
 import 'package:tvseries/presentation/pages/tv_series_popular_page.dart';
 import 'package:tvseries/presentation/pages/tv_series_top_rated_page.dart';
+import 'package:tvseries/presentation/pages/tv_series_detail_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -78,15 +83,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<TvSeriesTopRatedBloc>(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<TvSeriesDetailNotifier>(),
-        // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<WatchlistTvSeriesNotifier>(),
-        // ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<TvSeriesSearchNotifier>(),
-        // )
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesRecommendationBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchListTvSeriesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistTvSeriesProcessBloc>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -122,11 +130,11 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => TvSeriesPopularPage());
             case topRatedTvSeriesRoute:
               return MaterialPageRoute(builder: (_) => TvSeriesTopRatedPage());
-            // case TvSeriesDetailPage.ROUTE_NAME:
-            // final id = settings.arguments as int;
-            // return MaterialPageRoute(
-            //     builder: (_) => TvSeriesDetailPage(id: id),
-            //     settings: settings);
+            case tvSeriesDetailRoute:
+              final id = settings.arguments as int;
+              return MaterialPageRoute(
+                  builder: (_) => TvSeriesDetailPage(id: id),
+                  settings: settings);
             case watchlistMovieRoute:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             default:

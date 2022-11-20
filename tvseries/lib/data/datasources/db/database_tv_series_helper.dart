@@ -23,7 +23,7 @@ class DatabaseTvSeriesHelper {
 
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
-    final databasePath = '$path/ditonton.db';
+    final databasePath = '$path/ditonton_tv.db';
 
     var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
     return db;
@@ -42,7 +42,6 @@ class DatabaseTvSeriesHelper {
 
   Future<int> insertTvSeriesWatchList(TvSeriesTable tvSeries) async {
     final db = await database;
-
     return await db!.insert(_tblWatchListTvSeries, tvSeries.toJson());
   }
 

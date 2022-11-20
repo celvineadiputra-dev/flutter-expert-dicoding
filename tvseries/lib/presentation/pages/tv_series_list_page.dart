@@ -147,7 +147,7 @@ class TvSeriesList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  "",
+                  tvSeriesDetailRoute,
                   arguments: tv.id,
                 );
               },
