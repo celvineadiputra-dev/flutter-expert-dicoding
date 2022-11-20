@@ -1,7 +1,8 @@
 import 'dart:convert';
 
-import 'package:core/domain/entities/season.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../domain/entities/season.dart';
 
 class SeasonModel extends Equatable {
   SeasonModel({

@@ -1,6 +1,6 @@
-import 'package:core/data/models/season_model.dart';
-import 'package:core/domain/entities/season.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tvseries/data/models/season_model.dart';
+import 'package:tvseries/domain/entities/season.dart';
 
 void main() {
   final tSeasonModel = SeasonModel(

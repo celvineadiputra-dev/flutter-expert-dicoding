@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:core/data/models/genre_model.dart';
-import 'package:core/data/models/season_model.dart';
 import 'package:equatable/equatable.dart';
+import 'package:tvseries/data/models/season_model.dart';
 
 import '../../domain/entities/tv_series_detail.dart';
 
