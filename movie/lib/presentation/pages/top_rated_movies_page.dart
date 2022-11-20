@@ -47,7 +47,7 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
                 itemCount: data.result.length,
               );
             } else {
-              return const Text('Failed');
+              return const Text(key: Key("error_message"), 'Failed');
             }
           },
         ),

@@ -131,6 +131,7 @@ class _DetailContentState extends State<DetailContent> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
+                              key : const Key("title"),
                               widget.movie.title,
                               style: kHeading5,
                             ),
@@ -139,6 +140,7 @@ class _DetailContentState extends State<DetailContent> {
                               isAdded: isAdded,
                             ),
                             Text(
+                              key : const Key("genre"),
                               _showGenres(widget.movie.genres),
                             ),
                             Text(
@@ -164,6 +166,7 @@ class _DetailContentState extends State<DetailContent> {
                               style: kHeading6,
                             ),
                             Text(
+                              key : Key("overView"),
                               widget.movie.overview,
                             ),
                             const SizedBox(height: 16),
@@ -190,6 +193,7 @@ class _DetailContentState extends State<DetailContent> {
                                   return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
+                                      key: const Key("listViewRecommendation"),
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         final movie = data.result[index];

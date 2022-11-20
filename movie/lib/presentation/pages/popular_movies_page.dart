@@ -47,7 +47,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
                 itemCount: data.result.length,
               );
             } else {
-              return const Text('Failed');
+              return const Text(key: Key("error_message"), 'Failed');
             }
             return Expanded(child: Container());
           },

@@ -23,14 +23,16 @@ class _HomeMovieListState extends State<HomeMovieList> {
   void initState() {
     super.initState();
 
-    context.read<MovieListNowPlayingBloc>().add(FetchNowPlayingMovies());
-    context.read<MovieListPopularBloc>().add(FetchPopularMovies());
-    context.read<MovieListTopRatedBloc>().add(FetchTopRatedMovies());
+    Future.microtask(() {
+      context.read<MovieListNowPlayingBloc>().add(FetchNowPlayingMovies());
+      context.read<MovieListPopularBloc>().add(FetchPopularMovies());
+      context.read<MovieListTopRatedBloc>().add(FetchTopRatedMovies());
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -118,15 +120,12 @@ class _HomeMovieListState extends State<HomeMovieList> {
           title,
           style: kHeading6,
         ),
-        InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
-            ),
+        TextButton(
+          onPressed: onTap,
+          child: Row(
+            children: const [Text('See More'), Icon(Icons.arrow_forward_ios)],
           ),
-        ),
+        )
       ],
     );
   }
@@ -148,7 +147,7 @@ class MovieList extends StatelessWidget {
           final movie = movies[index];
           return Container(
             padding: const EdgeInsets.all(8),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 Navigator.pushNamed(
                   context,
