@@ -1,7 +1,7 @@
 import 'package:movie/data/datasources/movie_remote_data_source.dart';
-import 'package:core/data/datasources/tv_series_remote_data_source.dart';
+import 'package:tvseries/data/datasources/tv_series_remote_data_source.dart';
 import 'package:movie/domain/repositories/movie_repository.dart';
-import 'package:core/domain/repositories/tv_series_repository.dart';
+import 'package:tvseries/domain/repositories/tv_series_repository.dart';
 import 'package:mockito/annotations.dart';
 import 'package:search/domain/usecases/search_movies.dart';
 import 'package:search/domain/usecases/search_tv_series.dart';

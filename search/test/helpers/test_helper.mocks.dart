@@ -8,13 +8,6 @@ import 'dart:convert' as _i20;
 import 'dart:typed_data' as _i21;
 
 import 'package:core/core.dart' as _i9;
-import 'package:core/data/datasources/tv_series_remote_data_source.dart'
-    as _i16;
-import 'package:core/data/models/tv_series_detail_model.dart' as _i4;
-import 'package:core/data/models/tv_series_model.dart' as _i17;
-import 'package:core/domain/entities/tv_series.dart' as _i12;
-import 'package:core/domain/entities/tv_series_detail.dart' as _i13;
-import 'package:core/domain/repositories/tv_series_repository.dart' as _i6;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:http/http.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
@@ -26,6 +19,13 @@ import 'package:movie/domain/entities/movie_detail.dart' as _i11;
 import 'package:movie/domain/repositories/movie_repository.dart' as _i5;
 import 'package:search/domain/usecases/search_movies.dart' as _i18;
 import 'package:search/domain/usecases/search_tv_series.dart' as _i19;
+import 'package:tvseries/data/datasources/tv_series_remote_data_source.dart'
+    as _i16;
+import 'package:tvseries/data/models/tv_series_detail_model.dart' as _i4;
+import 'package:tvseries/data/models/tv_series_model.dart' as _i17;
+import 'package:tvseries/domain/entities/tv_series.dart' as _i12;
+import 'package:tvseries/domain/entities/tv_series_detail.dart' as _i13;
+import 'package:tvseries/domain/repositories/tv_series_repository.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

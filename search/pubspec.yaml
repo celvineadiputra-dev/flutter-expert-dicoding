@@ -18,6 +18,8 @@ dependencies:
     path: ../core
   movie:
     path: ../movie
+  tvseries:
+    path: ../tvseries
 
   flutter_bloc: ^8.1.1
   rxdart: ^0.27.7

@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:movie/domain/entities/movie.dart';
-import 'package:core/domain/entities/tv_series.dart';
+import 'package:tvseries/domain/entities/tv_series.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
 import 'package:search/presentation/bloc/search_movie_state.dart';

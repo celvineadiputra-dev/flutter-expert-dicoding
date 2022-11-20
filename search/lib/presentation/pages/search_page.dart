@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
-import 'package:core/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:search/presentation/bloc/search_movie_state.dart';
 import 'package:search/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:search/presentation/bloc/search_tv_series_event.dart';
 import 'package:search/presentation/bloc/search_tv_series_state.dart';
+import 'package:tvseries/presentation/widgets/tv_series_card_list.dart';
 
 enum SearchType { TV, MOVIE }
 

@@ -5,3 +5,6 @@ const movieDetailRoute = '/movie_detail';
 const watchlistMovieRoute = '/watchlist_movie';
 const popularMovieRoute = '/popular_movie';
 const topRatedMovieRoute = '/top_rated_movie';
+const nowPlayingTvSeriesRoute = '/now_playing_tv_series';
+const popularTvSeriesRoute = '/popular_tv_series';
+const topRatedTvSeriesRoute = '/top_rated_tv_series';

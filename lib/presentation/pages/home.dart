@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
-import 'package:core/presentation/pages/watchlist_tv_series_page.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/presentation/pages/home_movie_list_page.dart';
+import 'package:tvseries/presentation/pages/tv_series_list_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -54,13 +54,13 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, watchlistMovieRoute);
               },
             ),
-            ListTile(
-              leading: Icon(Icons.save_alt),
-              title: Text('Watchlist Tv Series'),
-              onTap: () {
-                Navigator.pushNamed(context, WatchListTvSeries.ROUTE_NAME);
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.save_alt),
+            //   title: Text('Watchlist Tv Series'),
+            //   onTap: () {
+            //     Navigator.pushNamed(context, WatchListTvSeries.ROUTE_NAME);
+            //   },
+            // ),
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, aboutRoute);
@@ -74,12 +74,12 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              HomeMovieList(),
-            ],
-          )
-        ),
+            child: Column(
+          children: [
+            TvSeriesListPage(),
+            HomeMovieList(),
+          ],
+        )),
       ),
     );
   }
