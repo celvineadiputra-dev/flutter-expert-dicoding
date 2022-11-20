@@ -9,3 +9,4 @@ const nowPlayingTvSeriesRoute = '/now_playing_tv_series';
 const popularTvSeriesRoute = '/popular_tv_series';
 const topRatedTvSeriesRoute = '/top_rated_tv_series';
 const tvSeriesDetailRoute = '/tv_series_detail';
+const watchListTvSeriesRoute = 'watchlist_tv_series';

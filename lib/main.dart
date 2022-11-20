@@ -33,6 +33,7 @@ import 'package:tvseries/presentation/pages/tv_series_on_air_page.dart';
 import 'package:tvseries/presentation/pages/tv_series_popular_page.dart';
 import 'package:tvseries/presentation/pages/tv_series_top_rated_page.dart';
 import 'package:tvseries/presentation/pages/tv_series_detail_pages.dart';
+import 'package:tvseries/presentation/pages/watchlist_tv_series_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -130,6 +131,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => TvSeriesPopularPage());
             case topRatedTvSeriesRoute:
               return MaterialPageRoute(builder: (_) => TvSeriesTopRatedPage());
+            case watchListTvSeriesRoute:
+              return MaterialPageRoute(builder: (_) => WatchListTvSeries());
             case tvSeriesDetailRoute:
               final id = settings.arguments as int;
               return MaterialPageRoute(

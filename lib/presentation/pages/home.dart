@@ -54,13 +54,13 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, watchlistMovieRoute);
               },
             ),
-            // ListTile(
-            //   leading: Icon(Icons.save_alt),
-            //   title: Text('Watchlist Tv Series'),
-            //   onTap: () {
-            //     Navigator.pushNamed(context, WatchListTvSeries.ROUTE_NAME);
-            //   },
-            // ),
+            ListTile(
+              leading: Icon(Icons.save_alt),
+              title: Text('Watchlist Tv Series'),
+              onTap: () {
+                Navigator.pushNamed(context, watchListTvSeriesRoute);
+              },
+            ),
             ListTile(
               onTap: () {
                 Navigator.pushNamed(context, aboutRoute);
