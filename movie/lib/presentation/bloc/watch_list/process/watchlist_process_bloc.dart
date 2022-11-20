@@ -19,6 +19,8 @@ class WatchlistProcessBloc
     on<AddToWatchList>((event, emit) async {
       final movie = event.movieDetail;
 
+      emit(const WatchlistProcessLoading(state: RequestState.Loading));
+
       final result = await _saveWatchlist.execute(movie);
 
       result.fold(
@@ -33,6 +35,8 @@ class WatchlistProcessBloc
 
     on<RemoveFromWatchList>((event, emit) async {
       final movie = event.movieDetail;
+
+      emit(const WatchlistProcessLoading(state: RequestState.Loading));
 
       final result = await _removeWatchlist.execute(movie);
 

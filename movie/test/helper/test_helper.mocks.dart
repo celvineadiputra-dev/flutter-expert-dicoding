@@ -4,8 +4,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i6;
-import 'dart:convert' as _i21;
-import 'dart:typed_data' as _i22;
+import 'dart:convert' as _i23;
+import 'dart:typed_data' as _i24;
 
 import 'package:core/core.dart' as _i7;
 import 'package:dartz/dartz.dart' as _i2;
@@ -26,6 +26,8 @@ import 'package:movie/domain/usecases/get_popular_movies.dart' as _i15;
 import 'package:movie/domain/usecases/get_top_rated_movies.dart' as _i16;
 import 'package:movie/domain/usecases/get_watchlist_movies.dart' as _i19;
 import 'package:movie/domain/usecases/get_watchlist_status.dart' as _i20;
+import 'package:movie/domain/usecases/remove_watchlist.dart' as _i21;
+import 'package:movie/domain/usecases/save_watchlist.dart' as _i22;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -605,6 +607,74 @@ class MockGetWatchListStatus extends _i1.Mock
       ) as _i6.Future<bool>);
 }
 
+/// A class which mocks [RemoveWatchlist].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRemoveWatchlist extends _i1.Mock implements _i21.RemoveWatchlist {
+  MockRemoveWatchlist() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.MovieRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeMovieRepository_2(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i4.MovieRepository);
+  @override
+  _i6.Future<_i2.Either<_i7.Failure, String>> execute(_i9.MovieDetail? movie) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [movie],
+        ),
+        returnValue: _i6.Future<_i2.Either<_i7.Failure, String>>.value(
+            _FakeEither_0<_i7.Failure, String>(
+          this,
+          Invocation.method(
+            #execute,
+            [movie],
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
+}
+
+/// A class which mocks [SaveWatchlist].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSaveWatchlist extends _i1.Mock implements _i22.SaveWatchlist {
+  MockSaveWatchlist() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.MovieRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeMovieRepository_2(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i4.MovieRepository);
+  @override
+  _i6.Future<_i2.Either<_i7.Failure, String>> execute(_i9.MovieDetail? movie) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [movie],
+        ),
+        returnValue: _i6.Future<_i2.Either<_i7.Failure, String>>.value(
+            _FakeEither_0<_i7.Failure, String>(
+          this,
+          Invocation.method(
+            #execute,
+            [movie],
+          ),
+        )),
+      ) as _i6.Future<_i2.Either<_i7.Failure, String>>);
+}
+
 /// A class which mocks [Client].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -658,7 +728,7 @@ class MockHttpClient extends _i1.Mock implements _i5.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i21.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -688,7 +758,7 @@ class MockHttpClient extends _i1.Mock implements _i5.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i21.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -718,7 +788,7 @@ class MockHttpClient extends _i1.Mock implements _i5.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i21.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -748,7 +818,7 @@ class MockHttpClient extends _i1.Mock implements _i5.Client {
     Uri? url, {
     Map<String, String>? headers,
     Object? body,
-    _i21.Encoding? encoding,
+    _i23.Encoding? encoding,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -787,7 +857,7 @@ class MockHttpClient extends _i1.Mock implements _i5.Client {
         returnValue: _i6.Future<String>.value(''),
       ) as _i6.Future<String>);
   @override
-  _i6.Future<_i22.Uint8List> readBytes(
+  _i6.Future<_i24.Uint8List> readBytes(
     Uri? url, {
     Map<String, String>? headers,
   }) =>
@@ -797,8 +867,8 @@ class MockHttpClient extends _i1.Mock implements _i5.Client {
           [url],
           {#headers: headers},
         ),
-        returnValue: _i6.Future<_i22.Uint8List>.value(_i22.Uint8List(0)),
-      ) as _i6.Future<_i22.Uint8List>);
+        returnValue: _i6.Future<_i24.Uint8List>.value(_i24.Uint8List(0)),
+      ) as _i6.Future<_i24.Uint8List>);
   @override
   _i6.Future<_i5.StreamedResponse> send(_i5.BaseRequest? request) =>
       (super.noSuchMethod(
