@@ -1,9 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:movie/domain/entities/movie.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:movie/domain/entities/movie.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
 import 'package:search/presentation/bloc/search_movie_event.dart';
 import 'package:search/presentation/bloc/search_movie_state.dart';
@@ -81,7 +81,7 @@ void main() {
         'should return error when data is empty',
         build: () {
           when(mockSearchMovies.execute(tQuery))
-              .thenAnswer((_) async => Right([]));
+              .thenAnswer((_) async => const Right([]));
           return searchMovieBloc;
         },
         wait: const Duration(seconds: 2),

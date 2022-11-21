@@ -1,6 +1,6 @@
-import 'package:tvseries/domain/entities/tv_series.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:equatable/equatable.dart';
+import 'package:tvseries/domain/entities/tv_series.dart';
 
 abstract class SearchTvSeriesState extends Equatable{
   const SearchTvSeriesState();

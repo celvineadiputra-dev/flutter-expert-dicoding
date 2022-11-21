@@ -54,7 +54,7 @@ void main() {
     });
 
     blocTest("Should state loading and empty state", build: () {
-      when(mockGetTopRatedTvSeries.execute()).thenAnswer((_) async => Right([]));
+      when(mockGetTopRatedTvSeries.execute()).thenAnswer((_) async => const Right([]));
 
       return tvSeriesTopRatedBloc;
     }, act: (bloc) {

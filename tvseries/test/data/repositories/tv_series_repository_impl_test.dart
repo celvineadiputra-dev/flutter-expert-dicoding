@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
 import 'package:core/data/models/genre_model.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:tvseries/data/models/season_model.dart';
@@ -80,7 +80,7 @@ void main() {
         'should return connection failure when the device is not connected to internet',
         () async {
       when(mockTvSeriesRemoteDataSource.getNowPlayingTvSeries())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       final result = await repository.getNowPlayingTvSeries();
 
@@ -119,7 +119,7 @@ void main() {
         'should return connection failure when device is not connected to the internet',
         () async {
       when(mockTvSeriesRemoteDataSource.getPopularTvSeries())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       final result = await repository.getPopularTvSeries();
 
@@ -155,7 +155,7 @@ void main() {
         'should return ConnectionFailure when device is not connected to the internet',
         () async {
       when(mockTvSeriesRemoteDataSource.getTopRatedTvSeries())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       final result = await repository.getTopRatedTvSeries();
 
@@ -165,7 +165,7 @@ void main() {
   });
 
   group('Get Movie Detail', () {
-    final tId = 1;
+    const tId = 1;
 
     final tvSeriesDetailModel = TvSeriesDetailModel(
       adult: true,
@@ -225,7 +225,7 @@ void main() {
         'should return connection failure when the device is not connected to internet',
         () async {
       when(mockTvSeriesRemoteDataSource.detailTvSeries(tId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       final result = await repository.getDetailTvSeries(tId);
 
@@ -237,7 +237,7 @@ void main() {
 
   group('Get Movie Recommendations', () {
     final tTvSeriesList = <TvSeriesModel>[];
-    final tId = 1;
+    const tId = 1;
 
     test('should return data (movie list) when the call is successful',
         () async {
@@ -268,7 +268,7 @@ void main() {
         'should return connection failure when the device is not connected to the internet',
         () async {
       when(mockTvSeriesRemoteDataSource.getRecommendation(tId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       final result = await repository.getRecommendation(tId);
 
@@ -279,7 +279,7 @@ void main() {
   });
 
   group('Seach Tv Series', () {
-    final tQuery = 'spiderman';
+    const tQuery = 'spiderman';
 
     test('should return movie list when call to data source is successful',
         () async {
@@ -306,7 +306,7 @@ void main() {
         'should return ConnectionFailure when device is not connected to the internet',
         () async {
       when(mockTvSeriesRemoteDataSource.searchTvSeries(tQuery))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       final result = await repository.searchTvSeries(tQuery);
 
@@ -323,7 +323,7 @@ void main() {
 
       final result = await repository.saveWatchList(testTvSeriesDetail);
 
-      expect(result, Right('Success added to watchlist'));
+      expect(result, const Right('Success added to watchlist'));
     });
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
@@ -345,7 +345,7 @@ void main() {
 
       final result = await repository.removeWatchList(testTvSeriesDetail);
 
-      expect(result, Right('Removed from watchlist'));
+      expect(result, const Right('Removed from watchlist'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
@@ -361,7 +361,7 @@ void main() {
 
   group('get watchlist status', () {
     test('should return watch status whether data is found', () async {
-      final tId = 1;
+      const tId = 1;
       when(mockTvSeriesLocalDataSource.getTvSeriesById(tId))
           .thenAnswer((_) async => null);
 

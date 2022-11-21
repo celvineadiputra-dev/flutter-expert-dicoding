@@ -67,7 +67,7 @@ void main() {
     voteCount: 101,
   );
 
-  final String data = '{"adult":true,"backdrop_path":"path","genres":[{"id":1,"name":"genre"}],"id":1,"languages":["en"],"name":"test","number_of_episodes":70,"number_of_seasons":8,"original_language":"en","original_name":"test","overview":"test","popularity":1.1,"poster_path":"path","seasons":[{"episode_count":1,"id":1,"name":"test season","overview":"overview","poster_path":"path","season_number":1}],"status":"ended","tagline":"ok","type":"test","vote_average":8.4,"vote_count":101}';
+  const String data = '{"adult":true,"backdrop_path":"path","genres":[{"id":1,"name":"genre"}],"id":1,"languages":["en"],"name":"test","number_of_episodes":70,"number_of_seasons":8,"original_language":"en","original_name":"test","overview":"test","popularity":1.1,"poster_path":"path","seasons":[{"episode_count":1,"id":1,"name":"test season","overview":"overview","poster_path":"path","season_number":1}],"status":"ended","tagline":"ok","type":"test","vote_average":8.4,"vote_count":101}';
 
   final jsonMap = {
     "adult": true,

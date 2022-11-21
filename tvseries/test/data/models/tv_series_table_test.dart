@@ -48,7 +48,7 @@ void main() {
   final tTvSeriesWatchList = TvSeries.watchlist(
       id: 1, overview: "overview", posterPath: "path", name: "test");
 
-  final String data =
+  const String data =
       '{"id":1,"name":"test","posterPath":"path","overview":"overview"}';
 
   final jsonExpected = {

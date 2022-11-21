@@ -1,15 +1,15 @@
 import 'package:core/core.dart';
-import 'package:movie/domain/entities/movie.dart';
-import 'package:tvseries/domain/entities/tv_series.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:movie/domain/entities/movie.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
 import 'package:search/presentation/bloc/search_movie_state.dart';
 import 'package:search/presentation/bloc/search_tv_series_bloc.dart';
 import 'package:search/presentation/bloc/search_tv_series_state.dart';
 import 'package:search/presentation/pages/search_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+import 'package:tvseries/domain/entities/tv_series.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 import '../../helpers/mock_search_movie.dart';
@@ -84,7 +84,7 @@ void main() {
         .thenReturn(SearchTvSeriesHasData(<TvSeries>[testTvSeries]));
 
     final listView = find.byType(ListView);
-    final container = find.byKey(Key("container-tv-series"));
+    final container = find.byKey(const Key("container-tv-series"));
     await tester.pumpWidget(_makeTestableWidget(SearchPage(
       isSearch: true,
     )));
@@ -97,7 +97,7 @@ void main() {
     when(() => mockSearchTvSeriesBloc.state)
         .thenReturn(const SearchTvSeriesLoading(tvSeriesState: RequestState.Empty));
 
-    final container = find.byKey(Key("container-tv-series-empty"));
+    final container = find.byKey(const Key("container-tv-series-empty"));
     await tester.pumpWidget(_makeTestableWidget(SearchPage(
       isSearch: true,
     )));
@@ -121,7 +121,7 @@ void main() {
     when(() => mockSearchMovieBloc.state).thenReturn(SearchMovieHasData(<Movie>[testMovie]));
 
     final listView = find.byType(ListView);
-    final container = find.byKey(Key("container-movie"));
+    final container = find.byKey(const Key("container-movie"));
     await tester.pumpWidget(_makeTestableWidget(SearchPage(
       isSearch: true,
       typeSelected: SearchType.MOVIE,
@@ -134,7 +134,7 @@ void main() {
   testWidgets("Show empty movie", (WidgetTester tester) async {
     when(() => mockSearchMovieBloc.state).thenReturn(const SearchMovieLoading(movieState: RequestState.Empty));
 
-    final container = find.byKey(Key("container-movie-empty"));
+    final container = find.byKey(const Key("container-movie-empty"));
     await tester.pumpWidget(_makeTestableWidget(SearchPage(
       isSearch: true,
       typeSelected: SearchType.MOVIE,
@@ -144,7 +144,7 @@ void main() {
   });
 
   testWidgets("Show default section", (WidgetTester tester) async {
-    final container = find.byKey(Key("container-default"));
+    final container = find.byKey(const Key("container-default"));
     await tester.pumpWidget(_makeTestableWidget(SearchPage(
       isSearch: false,
     )));

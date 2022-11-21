@@ -3,9 +3,6 @@ import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_bloc.dart';
-import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_event.dart';
-import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_state.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_event.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_state.dart';
@@ -57,7 +54,7 @@ void main() {
     });
 
     blocTest("Should state loading and empty state", build: () {
-      when(mockGetPopularMovies.execute()).thenAnswer((_) async => Right([]));
+      when(mockGetPopularMovies.execute()).thenAnswer((_) async => const Right([]));
 
       return movieListPopularBloc;
     }, act: (bloc) {

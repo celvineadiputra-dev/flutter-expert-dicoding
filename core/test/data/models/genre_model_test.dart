@@ -9,7 +9,7 @@ void main() {
 
   final tGenre = Genre(id: 1, name: "genre");
 
-  final String data = '{"id":1,"name":"genre"}';
+  const String data = '{"id":1,"name":"genre"}';
   group("Genre Model Test", () {
     test('should be a subclass of genre entity', () async {
       final result = tGenreModel.toEntity();

@@ -65,13 +65,13 @@ void main() {
 
   testWidgets("Contain Text Now Playing Movies", (WidgetTester tester) async {
     when(() => mockMovieListNowPlayingBloc.state)
-        .thenReturn(MovieListLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListLoading(state: RequestState.Loading));
 
     when(() => mockMovieListPopularBloc.state)
-        .thenReturn(MovieListPopularLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListPopularLoading(state: RequestState.Loading));
 
     when(() => mockMovieListTopRatedBloc.state)
-        .thenReturn(MovieListTopRatedLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListTopRatedLoading(state: RequestState.Loading));
 
     final text = find.text("Now Playing Movies");
 
@@ -82,13 +82,13 @@ void main() {
 
   testWidgets("Contain Text Popular Movies", (WidgetTester tester) async {
     when(() => mockMovieListNowPlayingBloc.state)
-        .thenReturn(MovieListLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListLoading(state: RequestState.Loading));
 
     when(() => mockMovieListPopularBloc.state)
-        .thenReturn(MovieListPopularLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListPopularLoading(state: RequestState.Loading));
 
     when(() => mockMovieListTopRatedBloc.state)
-        .thenReturn(MovieListTopRatedLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListTopRatedLoading(state: RequestState.Loading));
 
     final text = find.text("Popular Movies");
 
@@ -99,13 +99,13 @@ void main() {
 
   testWidgets("Contain Text Top Rated Movies", (WidgetTester tester) async {
     when(() => mockMovieListNowPlayingBloc.state)
-        .thenReturn(MovieListLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListLoading(state: RequestState.Loading));
 
     when(() => mockMovieListPopularBloc.state)
-        .thenReturn(MovieListPopularLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListPopularLoading(state: RequestState.Loading));
 
     when(() => mockMovieListTopRatedBloc.state)
-        .thenReturn(MovieListTopRatedLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListTopRatedLoading(state: RequestState.Loading));
 
     final text = find.text("Top Rated Movies");
 
@@ -116,13 +116,13 @@ void main() {
 
   testWidgets("Contain Loading", (WidgetTester tester) async {
     when(() => mockMovieListNowPlayingBloc.state)
-        .thenReturn(MovieListLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListLoading(state: RequestState.Loading));
 
     when(() => mockMovieListPopularBloc.state)
-        .thenReturn(MovieListPopularLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListPopularLoading(state: RequestState.Loading));
 
     when(() => mockMovieListTopRatedBloc.state)
-        .thenReturn(MovieListTopRatedLoading(state: RequestState.Loading));
+        .thenReturn(const MovieListTopRatedLoading(state: RequestState.Loading));
 
     final loading = find.byType(CircularProgressIndicator);
 

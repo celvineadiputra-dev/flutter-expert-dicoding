@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:tvseries/presentation/bloc/tv_series_detail/detail/tv_series_detail_bloc.dart';
 import 'package:tvseries/presentation/bloc/tv_series_detail/detail/tv_series_detail_state.dart';
 import 'package:tvseries/presentation/bloc/tv_series_detail/recommendation/tv_series_recommendation_bloc.dart';
@@ -86,7 +86,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvSeriesDetailPage(id: 1)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -124,7 +124,7 @@ void main() {
     final overView = find.byKey(const Key("overView"));
     final RatingBar = find.byType(RatingBarIndicator);
 
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const TvSeriesDetailPage(id: 1)));
 
     expect(image, findsWidgets);
     expect(title, findsOneWidget);

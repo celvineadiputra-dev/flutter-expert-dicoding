@@ -9,6 +9,7 @@ import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_ev
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_event.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_state.dart';
+
 import '../../domain/entities/movie.dart';
 import '../bloc/movie_list/now_playing/movie_list_now_playing_event.dart';
 import '../bloc/movie_list/popular/movie_list_popular_state.dart';
