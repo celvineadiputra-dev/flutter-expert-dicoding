@@ -44,7 +44,7 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
     try {
       await databaseHelper.removeTvSeriesWatchList(tvSeriesTable);
 
-      return "Removed from watchlist";
+      return "Removed from Watchlist";
     } catch (e) {
       throw DatabaseException(e.toString());
     }
