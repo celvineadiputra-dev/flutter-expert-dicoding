@@ -63,3 +63,10 @@ final testTvSeriesDetail = TvSeriesDetail(
   voteAverage: 8.4,
   voteCount: 101,
 );
+
+final testWatchlistTVSeries = TvSeries.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
