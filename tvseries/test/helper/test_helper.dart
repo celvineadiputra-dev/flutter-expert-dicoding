@@ -11,6 +11,7 @@ import 'package:tvseries/domain/usecases/get_tv_series_recommendations.dart';
 import 'package:tvseries/domain/usecases/get_tv_series_watch_list_status.dart';
 import 'package:tvseries/domain/usecases/remove_tv_series_watchlist.dart';
 import 'package:tvseries/domain/usecases/save_tv_series_watchlist.dart';
+import 'package:tvseries/domain/usecases/get_watchlist_tv_series.dart';
 
 @GenerateMocks([
   TvSeriesRepository,
@@ -22,8 +23,9 @@ import 'package:tvseries/domain/usecases/save_tv_series_watchlist.dart';
   GetTvSeriesDetail,
   GetTvSeriesRecommendation,
   GetTvSeriesWatchListStatus,
+  GetWatchlistTvSeries,
   RemoveTvSeriesWatchList,
-  SaveTvSeriesWatchList
+  SaveTvSeriesWatchList,
 ], customMocks: [
   MockSpec<http.Client>(as: #MockHttpClient)
 ])

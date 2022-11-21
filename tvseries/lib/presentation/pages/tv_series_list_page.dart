@@ -143,7 +143,7 @@ class TvSeriesList extends StatelessWidget {
           final tv = tvs[index];
           return Container(
             padding: const EdgeInsets.all(8),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () {
                 Navigator.pushNamed(
                   context,

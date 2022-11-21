@@ -1,74 +1,81 @@
-// import 'package:core/core.dart';
-// import 'package:core/domain/entities/tv_series.dart';
-// import 'package:core/presentation/pages/watchlist_tv_series_page.dart';
-// import 'package:core/presentation/provider/watchlist_tv_series_notifier.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_test/flutter_test.dart';
-// import 'package:mockito/annotations.dart';
-// import 'package:mockito/mockito.dart';
-// import 'package:provider/provider.dart';
-//
-// import '../../dummy_data/dummy_objects.dart';
-// import 'watchlist_tv_series_page_test.mocks.dart';
-//
-// @GenerateMocks([WatchlistTvSeriesNotifier])
-// void main() {
-//   late MockWatchlistTvSeriesNotifier provider;
-//
-//   setUp(() {
-//     provider = MockWatchlistTvSeriesNotifier();
-//   });
-//
-//   Widget _makeTestableWidget(Widget body) {
-//     return ChangeNotifierProvider<WatchlistTvSeriesNotifier>.value(
-//       value: provider,
-//       child: MaterialApp(
-//         home: body,
-//       ),
-//     );
-//   }
-//
-//   testWidgets("App Bar", (WidgetTester tester) async {
-//     when(provider.watchlistState).thenReturn(RequestState.Loading);
-//
-//     final element = find.byType(AppBar);
-//
-//     await tester.pumpWidget(_makeTestableWidget(WatchListTvSeries()));
-//
-//     expect(element, findsOneWidget);
-//   });
-//
-//   testWidgets("Loading", (WidgetTester tester) async {
-//     when(provider.watchlistState).thenReturn(RequestState.Loading);
-//
-//     final element = find.byType(CircularProgressIndicator);
-//
-//     await tester.pumpWidget(_makeTestableWidget(WatchListTvSeries()));
-//
-//     expect(element, findsOneWidget);
-//   });
-//
-//   testWidgets("empty", (WidgetTester tester) async {
-//     when(provider.watchlistState).thenReturn(RequestState.Empty);
-//     when(provider.message).thenReturn("Empty");
-//
-//     final element = find.byKey(Key("error_message"));
-//
-//     await tester.pumpWidget(_makeTestableWidget(WatchListTvSeries()));
-//
-//     expect(element, findsOneWidget);
-//   });
-//
-//   testWidgets("loaded", (WidgetTester tester) async {
-//     when(provider.watchlistState).thenReturn(RequestState.Loaded);
-//     when(provider.watchlist).thenReturn(<TvSeries>[testTvSeries]);
-//
-//     final element = find.byType(ListView);
-//     final key = find.byKey(Key("container-tv-series"));
-//
-//     await tester.pumpWidget(_makeTestableWidget(WatchListTvSeries()));
-//
-//     expect(element, findsOneWidget);
-//     expect(key, findsOneWidget);
-//   });
-// }
+import 'package:core/core.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:tvseries/presentation/bloc/watch_list/list/watch_list_bloc.dart';
+import 'package:tvseries/presentation/bloc/watch_list/list/watch_list_state.dart';
+import 'package:tvseries/presentation/pages/watchlist_tv_series_page.dart';
+
+import '../../dummy_data/dummy_objects.dart';
+import '../../helper/mock_watch_list_tv_series.dart';
+
+void main() {
+  late MockWatchListBloc mockWatchListBloc;
+
+  setUp(() {
+    registerFallbackValue(MockWatchListEvent());
+    registerFallbackValue(MockWatchListState());
+    mockWatchListBloc = MockWatchListBloc();
+  });
+
+  Widget _makeTestableWidget(Widget body) {
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<WatchListTvSeriesBloc>(
+            create: (_) => mockWatchListBloc,
+          ),
+        ],
+        child: Builder(
+          builder: (_) => MaterialApp(
+            home: body,
+          ),
+        ));
+  }
+
+  testWidgets("App Bar", (WidgetTester tester) async {
+    when(() => mockWatchListBloc.state)
+        .thenReturn(const WatchListLoading(state: RequestState.Loading));
+
+    final element = find.byType(AppBar);
+
+    await tester.pumpWidget(_makeTestableWidget(WatchListTvSeries()));
+
+    expect(element, findsOneWidget);
+  });
+
+  testWidgets("Loading", (WidgetTester tester) async {
+    when(() => mockWatchListBloc.state)
+        .thenReturn(const WatchListLoading(state: RequestState.Loading));
+
+    final element = find.byType(CircularProgressIndicator);
+
+    await tester.pumpWidget(_makeTestableWidget(const WatchListTvSeries()));
+
+    expect(element, findsOneWidget);
+  });
+
+  testWidgets("empty", (WidgetTester tester) async {
+    when(() => mockWatchListBloc.state)
+        .thenReturn(const WatchListLoading(state: RequestState.Empty));
+
+    final element = find.text("Empty");
+
+    await tester.pumpWidget(_makeTestableWidget(const WatchListTvSeries()));
+
+    expect(element, findsOneWidget);
+  });
+
+  testWidgets("loaded", (WidgetTester tester) async {
+    when(() => mockWatchListBloc.state)
+        .thenReturn(WatchListHasData([testTvSeries]));
+
+    final element = find.byType(ListView);
+    final key = find.byKey(Key("container-tv-series"));
+
+    await tester.pumpWidget(_makeTestableWidget(const WatchListTvSeries()));
+
+    expect(element, findsOneWidget);
+    expect(key, findsOneWidget);
+  });
+}

@@ -130,11 +130,13 @@ class _DetailContentState extends State<DetailContent> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
+                              key: const Key("title"),
                               widget.data.originalName,
                               style: kHeading5,
                             ),
                             Watchlist(tvSeries: widget.data, isAdded: isAdded),
                             Text(
+                              key: const Key("genre"),
                               _showGenres(widget.data.genres),
                             ),
                             Row(
@@ -157,6 +159,7 @@ class _DetailContentState extends State<DetailContent> {
                               style: kHeading6,
                             ),
                             Text(
+                              key: const Key("overView"),
                               widget.data.overview,
                             ),
                             const SizedBox(height: 16),
@@ -167,6 +170,7 @@ class _DetailContentState extends State<DetailContent> {
                             SizedBox(
                               height: 200,
                               child: ListView.builder(
+                                key: const Key("listViewSeasons"),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
                                   final season = widget.data.seasons![index];
@@ -247,6 +251,7 @@ class _DetailContentState extends State<DetailContent> {
                                   return SizedBox(
                                     height: 150,
                                     child: ListView.builder(
+                                      key: const Key("listViewRecommendation"),
                                       scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         final recommendation =
