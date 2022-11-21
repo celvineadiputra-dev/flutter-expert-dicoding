@@ -27,10 +27,10 @@ class _TvSeriesPopularPage extends State<TvSeriesPopularPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Popular Tv Series"),
+        title: const Text("Popular Tv Series"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: BlocBuilder<TvSeriesPopularBloc, TvSeriesPopularState>(
           builder: (context, data) {
             if (data is TvSeriesPopularLoading) {

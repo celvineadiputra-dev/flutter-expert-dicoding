@@ -13,7 +13,7 @@ void main() {
     useCase = GetTvSeriesWatchListStatus(mockTvSeriesRepository);
   });
 
-  final tId = 1;
+  const tId = 1;
 
   test('should get watchlist status from repository', () async {
     when(mockTvSeriesRepository.isAddedToWatchList(tId)).thenAnswer((_) async => true);

@@ -1,10 +1,10 @@
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_event.dart';
 import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_state.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
-import 'package:flutter/material.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   @override

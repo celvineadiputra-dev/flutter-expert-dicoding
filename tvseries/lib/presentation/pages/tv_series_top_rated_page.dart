@@ -27,10 +27,10 @@ class _TvSeriesTopRatedPage extends State<TvSeriesTopRatedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Top Rated Tv Series"),
+        title: const Text("Top Rated Tv Series"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: BlocBuilder<TvSeriesTopRatedBloc, TvSeriesTopRatedState>(
           builder: (context, data) {
             if (data is TvSeriesTopRatedLoading) {

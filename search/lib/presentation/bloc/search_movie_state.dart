@@ -1,6 +1,6 @@
-import 'package:movie/domain/entities/movie.dart';
 import 'package:core/utils/state_enum.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie/domain/entities/movie.dart';
 
 abstract class SearchMovieState extends Equatable{
   const SearchMovieState();

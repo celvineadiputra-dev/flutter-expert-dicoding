@@ -3,12 +3,6 @@ import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_bloc.dart';
-import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_event.dart';
-import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_state.dart';
-import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_bloc.dart';
-import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_event.dart';
-import 'package:movie/presentation/bloc/movie_list/popular/movie_list_popular_state.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_event.dart';
 import 'package:movie/presentation/bloc/movie_list/top_rated/movie_list_top_rated_state.dart';
@@ -60,7 +54,7 @@ void main() {
     });
 
     blocTest("Should state loading and empty state", build: () {
-      when(mockGetTopRatedMovies.execute()).thenAnswer((_) async => Right([]));
+      when(mockGetTopRatedMovies.execute()).thenAnswer((_) async => const Right([]));
 
       return movieListTopRatedBloc;
     }, act: (bloc) {

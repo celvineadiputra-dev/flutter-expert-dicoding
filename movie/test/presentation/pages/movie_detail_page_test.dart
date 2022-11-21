@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movie/presentation/bloc/movie_detail/detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/detail/movie_detail_state.dart';
@@ -10,8 +12,6 @@ import 'package:movie/presentation/bloc/movie_detail/recommendation/movie_recomm
 import 'package:movie/presentation/bloc/watch_list/process/watchlist_process_bloc.dart';
 import 'package:movie/presentation/bloc/watch_list/process/watchlist_process_state.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 import '../../helper/mock_movie_detail.dart';
@@ -84,7 +84,7 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -101,7 +101,7 @@ void main() {
 
     final loading = find.byType(CircularProgressIndicator);
 
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
 
     expect(loading, findsOneWidget);
   });
@@ -122,7 +122,7 @@ void main() {
     final overView = find.byKey(const Key("overView"));
     final RatingBar = find.byType(RatingBarIndicator);
 
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
 
     expect(image, findsWidgets);
     expect(title, findsOneWidget);
@@ -143,7 +143,7 @@ void main() {
 
     final key = find.byKey(const Key("listViewRecommendation"));
 
-    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
 
     expect(key, findsOneWidget);
   });

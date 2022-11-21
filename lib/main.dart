@@ -1,8 +1,13 @@
+import 'package:about/about.dart';
 import 'package:core/core.dart';
 import 'package:core/firebase_options.dart';
+import 'package:core/utils/http_custom.dart';
 import 'package:ditonton/injection.dart' as di;
-import 'package:about/about.dart';
 import 'package:ditonton/presentation/pages/home.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/detail/movie_detail_bloc.dart';
 import 'package:movie/presentation/bloc/movie_detail/recommendation/movie_recommendation_bloc.dart';
 import 'package:movie/presentation/bloc/movie_list/now_playing/movie_list_now_playing_bloc.dart';
@@ -12,16 +17,11 @@ import 'package:movie/presentation/bloc/watch_list/list/watch_list_bloc.dart';
 import 'package:movie/presentation/bloc/watch_list/process/watchlist_process_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:search/presentation/pages/search_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:movie/presentation/pages/watchlist_movies_page.dart';
 import 'package:search/presentation/bloc/search_movie_bloc.dart';
 import 'package:search/presentation/bloc/search_tv_series_bloc.dart';
-import 'package:core/utils/http_custom.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:search/presentation/pages/search_page.dart';
 import 'package:tvseries/presentation/bloc/tv_series_detail/detail/tv_series_detail_bloc.dart';
 import 'package:tvseries/presentation/bloc/tv_series_detail/recommendation/tv_series_recommendation_bloc.dart';
 import 'package:tvseries/presentation/bloc/tv_series_list/now_playing/tv_series_now_playing_bloc.dart';
@@ -29,10 +29,10 @@ import 'package:tvseries/presentation/bloc/tv_series_list/popular/tv_series_popu
 import 'package:tvseries/presentation/bloc/tv_series_list/top_rated/tv_series_top_rated_bloc.dart';
 import 'package:tvseries/presentation/bloc/watch_list/list/watch_list_bloc.dart';
 import 'package:tvseries/presentation/bloc/watch_list/process/watchlist_process_bloc.dart';
+import 'package:tvseries/presentation/pages/tv_series_detail_pages.dart';
 import 'package:tvseries/presentation/pages/tv_series_on_air_page.dart';
 import 'package:tvseries/presentation/pages/tv_series_popular_page.dart';
 import 'package:tvseries/presentation/pages/tv_series_top_rated_page.dart';
-import 'package:tvseries/presentation/pages/tv_series_detail_pages.dart';
 import 'package:tvseries/presentation/pages/watchlist_tv_series_page.dart';
 
 void main() async {

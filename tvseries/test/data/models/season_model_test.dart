@@ -21,7 +21,7 @@ void main() {
     seasonNumber: 1,
   );
 
-  final String data =
+  const String data =
       '{"episode_count":1,"id":1,"name":"season","overview":"test coverage","poster_path":"url","season_number":1}';
 
   final jsonMap = {

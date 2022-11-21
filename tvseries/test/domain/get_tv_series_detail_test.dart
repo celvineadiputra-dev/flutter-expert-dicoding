@@ -15,7 +15,7 @@ void main() {
     useCase = GetTvSeriesDetail(mockTvSeriesRepository);
   });
 
-  final tId = 1;
+  const tId = 1;
 
   test('Should get tv series detail from the repository', () async {
     when(mockTvSeriesRepository.getDetailTvSeries(tId)).thenAnswer((_) async => Right(testTvSeriesDetail));

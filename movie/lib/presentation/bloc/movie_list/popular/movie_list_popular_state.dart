@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
-
 import 'package:movie/domain/entities/movie.dart';
 
 abstract class MovieListPopularState extends Equatable {

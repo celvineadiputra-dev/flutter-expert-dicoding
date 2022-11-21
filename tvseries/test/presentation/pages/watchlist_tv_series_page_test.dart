@@ -39,7 +39,7 @@ void main() {
 
     final element = find.byType(AppBar);
 
-    await tester.pumpWidget(_makeTestableWidget(WatchListTvSeries()));
+    await tester.pumpWidget(_makeTestableWidget(const WatchListTvSeries()));
 
     expect(element, findsOneWidget);
   });
@@ -71,7 +71,7 @@ void main() {
         .thenReturn(WatchListHasData([testTvSeries]));
 
     final element = find.byType(ListView);
-    final key = find.byKey(Key("container-tv-series"));
+    final key = find.byKey(const Key("container-tv-series"));
 
     await tester.pumpWidget(_makeTestableWidget(const WatchListTvSeries()));
 
