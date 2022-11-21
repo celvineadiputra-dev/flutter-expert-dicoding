@@ -58,7 +58,7 @@ void main() {
             json.decode(readJson('dummy_data/tv_series_popular.json')))
         .tvSeriesList;
 
-    test('should return list of movies when response is success (200)',
+    test('should return list of tv series when response is success (200)',
         () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/popular?$API_KEY')))
@@ -88,7 +88,7 @@ void main() {
             json.decode(readJson('dummy_data/tv_series_top_rated.json')))
         .tvSeriesList;
 
-    test('should return list of movies when response code is 200 ', () async {
+    test('should return list of tv series when response code is 200 ', () async {
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY')))
           .thenAnswer((_) async => http.Response(
               readJson('dummy_data/tv_series_top_rated.json'), 200));
@@ -109,12 +109,12 @@ void main() {
     });
   });
 
-  group('get movie detail', () {
+  group('get tv series detail', () {
     const tId = 1;
     final tTvSeriesList = TvSeriesDetailModel.fromMap(
         jsonDecode(readJson('dummy_data/tv_series_detailx.json')));
 
-    test('should return movie detail when the response code is 200', () async {
+    test('should return tv series detail when the response code is 200', () async {
       // arrange
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/$tId?$API_KEY')))
           .thenAnswer((_) async =>
@@ -137,7 +137,7 @@ void main() {
         });
   });
 
-  group('get movie recommendations', () {
+  group('get tv series recommendations', () {
     final tTvSeriesList = TvSeriesResponse.fromJson(
         jsonDecode(readJson('dummy_data/tv_series_recommendation.json')))
         .tvSeriesList;
@@ -169,13 +169,13 @@ void main() {
         });
   });
 
-  group('search movies', () {
+  group('search tv series', () {
     final tTvSeriesList = TvSeriesResponse.fromJson(
         json.decode(readJson('dummy_data/tv_series_search.json')))
         .tvSeriesList;
     const tQuery = 'Game of Thrones';
 
-    test('should return list of movies when response code is 200', () async {
+    test('should return list of tv series when response code is 200', () async {
       // arrange
       when(mockHttpClient
           .get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$tQuery')))

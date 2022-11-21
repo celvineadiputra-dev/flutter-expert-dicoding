@@ -82,7 +82,7 @@ void main() {
     });
   });
 
-  group('get watchlist movies', () {
+  group('get watchlist tv series', () {
     test('should return list of MovieTable from database', () async {
       when(mockDatabaseHelper.getAllTvSeriesWatchList())
           .thenAnswer((_) async => [testTvSeriesMap]);
