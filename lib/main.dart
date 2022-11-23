@@ -36,11 +36,16 @@ import 'package:tvseries/presentation/pages/tv_series_top_rated_page.dart';
 import 'package:tvseries/presentation/pages/watchlist_tv_series_page.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  HttpCustom.init();
-  di.init();
-  runApp(MyApp());
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+    await HttpCustom.init();
+    di.init();
+    runApp(MyApp());
+  } catch (e) {
+    runApp(SslFailed());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -152,6 +157,21 @@ class MyApp extends StatelessWidget {
               );
           }
         },
+      ),
+    );
+  }
+}
+
+class SslFailed extends StatelessWidget {
+  const SslFailed({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text("CERTIFICATE VERIFY FAILED"),
+        ),
       ),
     );
   }
